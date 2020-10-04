@@ -6,7 +6,7 @@ import rootReducer from "./root-reducer";
 const middlewares = [thunk];
 
 const bindMiddleware = (middleware) => {
-  return(applyMiddleware(...middleware));
+  return applyMiddleware(...middleware);
 };
 
 const store = createStore(rootReducer, bindMiddleware(middlewares));

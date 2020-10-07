@@ -1,21 +1,14 @@
 import React, { useEffect } from "react";
 import { View } from 'react-native';
 import { useSelector, useDispatch } from "react-redux";
-import styled from "styled-components";
+import Product from './Product/Product';
 
 const Detail = () => {
-
   return (
     <View>
-      <Test>상세페이지</Test>
+      <Product route="detail" />
     </View>  
   )
 }
 
 export default Detail
-
-const Test = styled.Text `
-  color: ${({theme}) => theme.color.MainPurple};
-  border: ${({theme}) => theme.border.BorderGrey};
-  font-size: 50px;
-`

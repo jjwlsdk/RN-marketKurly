@@ -1,9 +1,10 @@
 import actions from "./actions";
-const { GET_DATA, OFF_SET } = actions;
+const { GET_DATA, OFF_SET, GET_ID } = actions;
 
 const INITIAL_STATE = {
   data: [],
-  offset: 0
+  offset: 0,
+  id: 0
 };
 
 export default function productReducer(state=INITIAL_STATE, action){
@@ -17,6 +18,11 @@ export default function productReducer(state=INITIAL_STATE, action){
       return {
         ...state,
         offset: action.payload
+      }
+    case GET_ID:
+      return {
+        ...state,
+        id: action.payload
       }
     default:
       return state

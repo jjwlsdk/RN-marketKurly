@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Button, View } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
-import Product from '../Pages/Product';
+import Product from '../Pages/Product/Product';
 import Detail from '../Pages/Detail';
 import Login from '../Pages/Login';
 

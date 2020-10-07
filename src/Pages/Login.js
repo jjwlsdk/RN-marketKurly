@@ -2,19 +2,18 @@ import React, { useEffect } from "react";
 import { View } from 'react-native';
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
-import { fetchingData } from "../Redux/sns/thunk";
 
 const Login = () => {
-  const dispatch = useDispatch();
-  const { data } = useSelector(({ tagReducer: { data }}) => ({ data }));
+//   const dispatch = useDispatch();
+//   const { data } = useSelector(({ tagReducer: { data }}) => ({ data }));
 
-useEffect(()=> {
-  dispatch(fetchingData())
-},[])
+// useEffect(()=> {
+//   dispatch(fetchingData())
+// },[])
 
-useEffect(() => {
-  console.log(data)
-}, [data])
+// useEffect(() => {
+//   console.log(data)
+// }, [data])
 
   return (
     <View>

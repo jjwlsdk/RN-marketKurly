@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import  tagReducer from "./sns/reducer";
+import productReducer from "./Product/reducer.js";
 export default combineReducers({
-tagReducer
+  productReducer
 });

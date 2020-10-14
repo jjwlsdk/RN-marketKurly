@@ -1,28 +1,39 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 const GoodsInfo = () => {
+  const { data } = useSelector(({ prodDataReducer: { data } }) => ({ data }));
+
   return (
     <Container>
       <List>
         <Title>판매단위</Title>
-        <Desc>1개</Desc>
+        <Desc>{data.unit}</Desc>
       </List>
       <List>
         <Title>중량/용량</Title>
-        <Desc>125g</Desc>
+        <Desc>{data.weight}</Desc>
       </List>
       <List>
         <Title>배송구분</Title>
-        <Desc>샛별배송/택배배송</Desc>
+        {/* <Desc>{data.delivery_types.join("/")}</Desc> */}
       </List>
       <List>
         <Title>원산지</Title>
-        <Desc>수입산(벨기에)</Desc>
+        <Desc>{data.origin}</Desc>
       </List>
       <List>
         <Title>포장타입</Title>
-        <Desc>냉동/종이포장</Desc>
+        <Desc>{data.shipping_type}</Desc>
+      </List>
+      <List>
+        <Title>알레르기정보</Title>
+        <Desc>{data.allergen}</Desc>
+      </List>
+      <List>
+        <Title>안내사항</Title>
+        <Desc>{data.information}</Desc>
       </List>
     </Container>
   );

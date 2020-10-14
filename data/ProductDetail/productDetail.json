@@ -1,0 +1,142 @@
+{
+  "product": [
+    {
+      "id": 1,
+      "name": "컬리플라워 라이스 340g(냉동)",
+      "sub_title": "저칼로리 식단을 위한 이색 라이스 (1팩/340g)",
+      "price": 5300,
+      "image": "https://img-cf.kurly.com/shop/data/goods/1564118564514y0.jpg",
+      "discount__percentage": 15,
+      "discount__image": "https://img-cf.kurly.com/shop/data/my_icon/icon_save_15.png",
+      "unit": "1팩",
+      "weight": "340g",
+      "shipping_type": "냉동/종이포장",
+      "origin": "수입산(벨기에)",
+      "allergen": "",
+      "expiration_date": "제품 별도 라벨 표기 참조",
+      "information": "",
+      "description__title": "저칼로리 식단을 위한 이색 라이스\n컬리플라워 라이스",
+      "description__content": "식단 관리 중에는 주식인 쌀의 칼로리에도 신경이 쓰이기 마련인데요. 컬리플라워 라이스는 쌀처럼 즐길 수 있는 저칼로리 식재료예요. 하얗고 몽글몽글한 채소, 컬리플라워를 쌀알 모양으로 잘게 썰어 급속 냉동했습니다. 외국에서는 이미 쌀을 대신하는 식재료로 널리 사용하고 있다고 해요. 컬리플라워를 손질하는 번거로운 과정 없이, 필요한 만큼 해동해 간편하게 즐길 수 있으니 더욱 기특하지요. 가볍게 데쳐 곡물을 대신하는 토핑으로 사용해도 좋고, 채소나 고기 등을 넣어 볶음밥처럼 조리해도 좋아요. 신경 써 고른 식재료로 가볍고 색다른 식단을 완성해 보세요.",
+      "description__image": "https://img-cf.kurly.com/shop/data/goodsview/20190726/gv20000057212_1.jpg",
+      "product_image": "https://img-cf.kurly.com/shop/data/goodsview/20200528/gv40000097758_1.jpg",
+      "check_point": "https://img-cf.kurly.com/shop/data/goodsview/20190726/gv30000057213_1.jpg",
+      "product_series": [],
+      "delivery_types": ["샛별배송"],
+      "discount_price": 4505
+    },
+    {
+      "id": 2,
+      "name": "친환경 잎채소 청경채 100g",
+      "sub_title": "중국 요리를 더욱 맛있게 (1봉/100g)",
+      "price": 1800,
+      "image": "https://img-cf.kurly.com/shop/data/goods/1498028693427y0.jpg",
+      "discount__percentage": null,
+      "discount__image": null,
+      "unit": "1봉",
+      "weight": "100g",
+      "shipping_type": "냉장/종이포장",
+      "origin": "국내산",
+      "allergen": "",
+      "expiration_date": "",
+      "information": "친환경 잎채소의 경우 당일 수확 또는 하루 전날 수확하여 고객분께 보내드리고 있습니다. 간혹 생기가 있지 않고 흐물흐물 거리는 이유는 여름철 계절적 이슈로 날씨가 더워 생장은 빨라 규격은 커질 수 있으나 세포는 정상적으로 성장하지 못하여 탄력이 없고 힘이 없어 흐물흐물 거리는 것으로 절대 오래 보관된 상품을 배송 해드리지 않는 점 안내드립니다.",
+      "description__title": "중국요리를 더욱 맛있게\n친환경 잎채소 청경채",
+      "description__content": "청경채는 잎과 잎줄기가 붙어서 자라는 한 포기 쌈채입니다. 중국요리에 고기와 함께 자주 등장해 친근한 채소이기도 하죠. 열을 가해도 아삭한 식감이 살아있어 무침이나 볶음, 조림, 국 등의 요리에 넣기 좋고요. 고기와 함께 조리하면 조화로운 식감의 요리를 만들 수 있어요. 비타민 A, C, E, 철분까지 풍부하니 맛은 물론 영양까지 팔방미인 채소입니다.\n\n데친 청경채를 굴 소스에 볶아만 줘도 간단하게 중식 느낌을 낼 수 있어요. 기호에 따라 부재료를 추가하면 더욱 근사해지겠죠. 매일 단조로운 식탁에 지루함을 느끼신다면, 오늘은 중국식 청경채 볶음 어떠세요?",
+      "description__image": "https://img-cf.kurly.com/shop/data/goodsview/20170621/gv20000004334_1.jpg",
+      "product_image": "https://img-cf.kurly.com/shop/data/goodsview/20170621/gv00000004335_1.jpg",
+      "check_point": "",
+      "product_series": [],
+      "delivery_types": ["샛별배송", "택배배송"],
+      "discount_price": 1800
+    },
+    {
+      "id": 113,
+      "name": "[Better me] 냉동 닭가슴살 4종",
+      "sub_title": "Better me 오리지널의 식감은 살리고 염도는 줄인(낱개 구매 가능)",
+      "price": 1700,
+      "image": "https://img-cf.kurly.com/shop/data/goods/1530769556384y0.jpg",
+      "discount__percentage": 10,
+      "discount__image": "https://img-cf.kurly.com/shop/data/my_icon/icon_save_10.png",
+      "unit": "1개",
+      "weight": "품목별 상이",
+      "shipping_type": "냉동/종이포장",
+      "origin": "국내산",
+      "allergen": "- 플레인 닭가슴살 : 닭고기 함유",
+      "expiration_date": "",
+      "information": "해당 상품 냉동 제품입니다.",
+      "description__title": "오늘보다 나은 내일의 나를 위해\n[Better me] 닭가슴살 4종 (냉동)",
+      "description__content": "'원래 부드러운 닭가슴살을 왜 우리는 퍽퍽하게 먹어야만 할까?' 이런 작은 의문에서 출발해 컬리가 기획한 Better me 닭가슴살. 식단조절 중이신 분들의 사랑을 받으며 컬리의 스테디셀러로 자리 잡았지요. Better me 닭가슴살이 더욱 특별해졌습니다. 플레인만으론 아쉽다는 생각에 허브, 버섯 크림, 페퍼 맛까지 다채롭게 갖추었고요. 필요할 때마다 편하게 꺼내 드실 수 있도록 냉동 제품으로 구성했지요. 1개씩 진공 포장된 제품이라 다양한 맛을 두루 경험해보기에도 제격입니다.\n\nBetter me 냉동 닭가슴살은 HACCP 인증을 받고 국제적인 공인인증기관인 SGS의 실사를 통과한 위생적인 시설에서 까다롭게 생산되고 있습니다. 눈길을 끄는 대목은 바로 수비드 공법을 응용한 슬로우 쿡(Slow-Cook) 기술이에요. 저온에서 천천히 닭가슴살을 조리하기에 촉촉하면서도 부드럽게 다가와요. 칼로리를 계산하는 분들이라면 닭가슴살만 드셔도 좋고, 꼭 식단관리 목적이 아니더라도 요리에 활용하기에도 제격이에요. 샐러드, 볶음밥, 샌드위치 등 닭가슴살이 필요한 그 어떤 음식과도 잘 어울립니다.",
+      "description__image": "https://img-cf.kurly.com/shop/data/goodsview/20180705/gv10000026619_1.jpg",
+      "product_image": "https://img-cf.kurly.com/shop/data/goodsview/20200204/gv20000080087_1.jpg",
+      "check_point": "https://img-cf.kurly.com/shop/data/goodsview/20180705/gv20000026620_1.jpg",
+      "product_series": [
+        {
+          "name": "[Better me] 플레인 닭가슴살 (냉동)",
+          "price": 1530,
+          "product_series_id": 70
+        },
+        {
+          "name": "[Better me] 허브 닭가슴살 (냉동)",
+          "price": 1710,
+          "product_series_id": 71
+        },
+        {
+          "name": "[Better me] 페퍼 닭가슴살 (냉동)",
+          "price": 1710,
+          "product_series_id": 72
+        },
+        {
+          "name": "[Better me] 버섯 크림 닭가슴살 (냉동)",
+          "price": 1980,
+          "product_series_id": 73
+        }
+      ],
+      "delivery_types": ["샛별배송", "택배배송"],
+      "discount_price": 1530
+    },
+    {
+      "id": 24,
+      "name": "[유가원] 유기농 건과일 4종",
+      "sub_title": "말려서 더 맛있어진 유기농 건과일 (건포도,건체리,건블루베리,건크렌베리 총4종)",
+      "price": 7400,
+      "image": "https://img-cf.kurly.com/shop/data/goods/1514876408502y0.jpg",
+      "discount__percentage": 10,
+      "discount__image": "https://img-cf.kurly.com/shop/data/my_icon/icon_save_10.png",
+      "unit": "1개",
+      "weight": "옵션별 상이",
+      "shipping_type": "냉장/종이포장",
+      "origin": "별도표기",
+      "allergen": "- 호두, 대두, 땅콩, 밀, 메밀과 같은 시설에서 생산",
+      "expiration_date": "",
+      "information": "블루베리는 기존 야생 유기농 블루베리의 수급이 불안정하여 컬티베이트드(재배된) 유기농 블루베리로 변경되었습니다.",
+      "description__title": "정직하게 기르고 깨끗하게 건조한\n[유가원] 유기농 건과일 4종",
+      "description__content": "매일 과일을 챙겨 먹으면 좋다는 걸 알고는 있지만 마음처럼 쉽진 않아요. 욕심내어 이것저것 사두면 다 먹지 못해 버리는 일이 많고, 보관에도 신경을 써야 하죠. 이왕 건강을 생각해 과일을 섭취할 거라면 어떻게 생산되었는지 한 번 더 짚어보고 싶은 욕심도 있어요. 그래서 컬리는 유기농 과일을 정성껏 건조하여 보관과 활용이 간편한 유가원의 유기농 건과일 4종을 준비했습니다. 세계 각지의 농장에서 정직하게 기르고 깨끗하게 말린 건과일을 꼼꼼하게 골라, 부담스럽지 않은 소용량으로 담았어요. 전문적인 노하우로 재배한 유기농 건과일 만을 골랐기에 온 가족이 안심하고 섭취할 수 있답니다. 입이 심심할 때 간식으로 즐기셔도 좋으며, 샐러드나 요거트에 조금 곁들여 건강한 식단을 완성해보세요.",
+      "description__image": "https://img-cf.kurly.com/shop/data/goodsview/20180102/gv20000015130_1.jpg",
+      "product_image": "https://img-cf.kurly.com/shop/data/goodsview/20180822/gv40000029972_1.jpg",
+      "check_point": "https://img-cf.kurly.com/shop/data/goodsview/20180102/gv00000015131_1.jpg",
+      "product_series": [
+        {
+          "name": "(품절) 유기농 건포도 200g",
+          "price": 6660,
+          "product_series_id": 8
+        },
+        {
+          "name": "(품절) 유기농 건체리 140g",
+          "price": 13500,
+          "product_series_id": 9
+        },
+        {
+          "name": "유기농 컬티베이티드 건블루베리 160g",
+          "price": 14400,
+          "product_series_id": 10
+        },
+        {
+          "name": "유기농 건크랜베리 110g",
+          "price": 8460,
+          "product_series_id": 11
+        }
+      ],
+      "delivery_types": ["샛별배송", "택배배송"],
+      "discount_price": 6660
+    }
+  ]
+}

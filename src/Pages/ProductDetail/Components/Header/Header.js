@@ -1,12 +1,13 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 const Header = () => {
+  const { data } = useSelector(({ prodDataReducer: { data } }) => ({ data }));
+
   return (
     <Container>
-      <Back title="뒤로"></Back>
-      <Name>컬리플라워 라이스 340g(냉동)</Name>
-      <Cart title="카트"></Cart>
+      <Name>{data.name}</Name>
     </Container>
   );
 };
@@ -19,13 +20,9 @@ const Container = styled.View`
   align-items: center;
 `;
 
-const Back = styled.Button``;
-
 const Name = styled.Text`
   margin: 0 auto;
   font-weight: 600;
   font-size: 16px;
   line-height: 26px;
 `;
-
-const Cart = styled.Button``;

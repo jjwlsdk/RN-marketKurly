@@ -1,24 +1,27 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
-import mixIn from "../../../Styles/Mixin";
+import mixIn from "../../../../../Styles/Mixin";
 
 const GoodsPrice = () => {
+  const { data } = useSelector(({ prodDataReducer: { data } }) => ({ data }));
+
   return (
     <>
       <Container>
         <DcInfo>회원할인가</DcInfo>
         <PriceBox>
           <Price>
-            <Number>4,505</Number>
+            <Number>{`${data.discount_price}`}</Number>
             <Won>원</Won>
           </Price>
           <Dc>
-            <DcPercent>15</DcPercent>
+            <DcPercent>{data.discount__percentage}</DcPercent>
             <Per>%</Per>
           </Dc>
         </PriceBox>
         <OriginBox>
-          <OriginPrice>5,300</OriginPrice>
+          <OriginPrice>{`${data.price}`}</OriginPrice>
           <OriginWon>원</OriginWon>
         </OriginBox>
         <NoLogin>로그인 후, 회원할인가와 적립혜택이 제공됩니다.</NoLogin>
@@ -47,7 +50,7 @@ const Price = styled.Text`
   padding: 3px 10px 0;
 `;
 
-const Number = styled.Text`
+export const Number = styled.Text`
   padding-right: 2px;
   font-weight: 700;
   font-size: 24px;
@@ -55,7 +58,7 @@ const Number = styled.Text`
   letter-spacing: -0.5px;
 `;
 
-const Won = styled.Text`
+export const Won = styled.Text`
   padding: 0 0 0 1px;
   font-weight: 400;
   font-size: 16px;
@@ -80,7 +83,7 @@ const Per = styled(DcPercent)`
 
 const OriginBox = styled(Dc)``;
 
-const OriginPrice = styled.Text`
+export const OriginPrice = styled.Text`
   padding: 2px 0 0 10px;
   font-size: 16px;
   color: ${({ theme }) => theme.color.DiscountedCostGrey};
@@ -89,7 +92,7 @@ const OriginPrice = styled.Text`
   text-decoration-color: ${({ theme }) => theme.color.DiscountedCostGrey};
 `;
 
-const OriginWon = styled(OriginPrice)`
+export const OriginWon = styled(OriginPrice)`
   margin: 0;
   padding: 2px 0 0 0;
 `;

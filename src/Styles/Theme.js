@@ -14,7 +14,7 @@ const theme = {
   },
   border: {
     BorderGrey: "1px solid #ddd",
-  }
+  },
 };
 
 export default theme;

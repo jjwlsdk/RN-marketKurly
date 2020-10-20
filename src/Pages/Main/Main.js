@@ -1,4 +1,4 @@
-import React, {useState, useRef} from "react";
+import React, { useState, useRef } from "react";
 import { FlatList } from "react-native-gesture-handler";
 import * as Animatable from 'react-native-animatable';
 import SlideProd from '../../Pages/SlideProd/SlideProd';
@@ -18,13 +18,10 @@ export default function Main({navigation}) {
     scrollRef.current?.scrollToOffset({ animated: true, offset: 0 })
   }
 
-
   const renderItem = ({item}) => {
     return(
       <SlideProd
-        subCategoryId={item.sub_category_id}
-        category={item.category}
-        header={item.header}
+        sort_by_sub_category={item.sort_by_sub_category}
         navigation={navigation}
       />
     )
@@ -61,6 +58,7 @@ export default function Main({navigation}) {
 const Container = styled.View`
   position: relative;
   padding: 10px 0 50px;
+  background-color: ${({theme}) => theme.color.White}
 `
 
 const Delivery = styled.Image`
@@ -75,36 +73,22 @@ const TopBtn = styled.TouchableOpacity`
 `
 
 const BtnImage = Animatable.createAnimatableComponent(styled.Image`
-  opacity: ${({valueY}) => valueY > 700 ? "1" : "0"};
+  opacity: ${({scrollY}) => scrollY > 700 ? "1" : "0"};
   width: 46px;
   height: 46px;
 `);
 
 const ProdData = [
   {
-    sub_category_id: "1",
-    header: "이 상품 어때요?",
-    category: null
+    sort_by_sub_category: "이 상품 어때요?"
   },
   {
-    sub_category_id: "2",
-    header: "알뜰 상품",
-    category: null
+    sort_by_sub_category: "알뜰 상품"
   },
   {
-    sub_category_id: "3",
-    header: "오늘의 신상품",
-    category: "new"
+    sort_by_sub_category: "오늘의 신상품"
   },
   {
-    sub_category_id: "4",
-    header: "지금 가장 핫한 상품",
-    category: null
-    
-  },
-  {
-    sub_category_id: "5",
-    header: "식단관리",
-    category: null
+    sort_by_sub_category: "지금 가장 핫한 상품"
   }
 ]

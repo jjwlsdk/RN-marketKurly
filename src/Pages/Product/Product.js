@@ -1,22 +1,17 @@
-import React, {useEffect} from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
 import styled from 'styled-components';
 import ProductList from './Components/ProductList';
-import actions from '../../Redux/Product/actions';
 
 export default function Product({route}) {
-  const { sub_category_id } = route.params;
-  const dispatch = useDispatch();
-  const { getId } = actions;
-  
-  useEffect(() => {
-    // console.log(route.params)
-    dispatch(getId(sub_category_id));
-  }, [])
+  const { sort_by_category, sort_by_filter, navigation } = route.params;
 
   return (
     <Page>
-      <ProductList subCategoryId={sub_category_id}/>
+      <ProductList 
+        sort_by_category={sort_by_category}
+        sort_by_filter={sort_by_filter}
+        navigation={navigation}
+      />
     </Page>
   )
 }

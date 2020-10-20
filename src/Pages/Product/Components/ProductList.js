@@ -1,62 +1,59 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
 import { FlatList } from 'react-native';
 import styled from 'styled-components';
-// import { fetchingData } from '../../../Redux/Product/thunk';
 import mixIn from '../../../Styles/Mixin';
 import Filter from './Filter';
-import actions from '../../../Redux/Product/actions';
 
 const LIMIT = 10;
 
-export default function ProductList(props) {
-  const dispatch = useDispatch();
-  const { getData, getOffset } = actions;
-  const { data } = useSelector(({ productReducer: { data }}) => ({ data }));
-  const { offset } = useSelector(({ productReducer: { offset }}) => ({ offset }));
-  const { id } = useSelector(({ productReducer: { id }}) => ({ id }));
-  const { subCategoryId } = props;
-  // const DATA = data.products;
-  const DATA = data;
-  // useEffect(()=> {
-  //   dispatch(fetchingData());
-  //   console.log(subCategoryId);
-  // },[])
+export default function ProductList({ sort_by_category, sort_by_filter, navigation }) {
+  const [ data, setData ] = useState([]);
+  const [ offset, setOffset ] = useState(0);
 
+  const fetchData = async() => {
+    try{
+    const res = await fetch(`http://192.168.1.219:8000/products/`, {
+      method: "POST",
+      body: JSON.stringify({
+          "sort_by_category": sort_by_category,
+          "sort_by_filter": sort_by_filter
+      })
+    });
+    const resJson = await res.json();
+    const newResJson = resJson.products.slice(offset, offset + LIMIT)
+    setData(data.concat(newResJson))
+    await setOffset(offset + LIMIT)
+  } catch(e) {
+    console.log("페치에 실패했습니다.")
+    }
+  }
+
+  //npx json-server ./src/Data/Product/main.json --port 4000
+  // 서버가 닫혀있을때 이용해주세요
   // const fetchData = async() => {
   //   try{
-  //   const res = await fetch(`http://localhost:4000/products/`, {
-  //     method: "POST",
-  //     body: JSON.stringify({
-  //         "sub_category_id": subCategoryId
-  //     })
-  //   });
+  //   const res = await fetch(`http://localhost:4000/products`);
   //   const resJson = await res.json();
-  //   dispatch(getData(data.concat(resJson.slice(offset, offset + LIMIT))))
-  //   dispatch(await getOffset(offset + LIMIT))
+  //   const newResJson = resJson.slice(offset, offset + LIMIT)
+  //   setData(data.concat(newResJson))
+  //   await setOffset(offset + LIMIT)
+  //   console.log(data)
   // } catch(e) {
   //   console.log("페치에 실패했습니다.")
   //   }
   // }
 
-  const fetchData = async() => {
-    try{
-      const res = await fetch(`http://localhost:4000/products`);
-      const resJson = await res.json();
-      dispatch(getData(data.concat(resJson.slice(offset, offset + LIMIT))))
-      dispatch(await getOffset(offset + LIMIT));
-    } catch(e) {
-      console.log("페치에 실패했습니다.")
-    }
-  }
-
   useEffect(() => {
     fetchData();
   },[])
 
+  
   const renderItem = ({item}) => {    
     return (
-      <ProductContainer>
+      <ProductContainer
+        onPress={() => navigation.navigate('ProductDetail', {
+          productId: item.id
+        })}>
         <ProductWrap>
           <ImgWrap>
             <ProductImg source={{uri: item.image ? `${item.image}` : null}}/>
@@ -86,7 +83,7 @@ export default function ProductList(props) {
     <Container>
       <FlatList
         ListHeaderComponent={Filter}
-        data={DATA}
+        data={data}
         renderItem={renderItem}
         keyExtractor={(item, idx) => idx.toString()}
         numColumns={2}
@@ -101,7 +98,7 @@ const Container = styled.View`
   padding: 0 10px;
 `
 
-const ProductContainer = styled.View`
+const ProductContainer = styled.TouchableOpacity`
   padding: 0 5px 20px 0;
 `
 

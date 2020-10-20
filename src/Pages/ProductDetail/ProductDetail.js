@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { ScrollView } from "react-native";
 import styled from "styled-components";
 import Header from "./Components/Header";
@@ -8,11 +8,16 @@ import GoodsPrice from "./Components/GoodsPrice";
 import GoodsInfo from "./Components/GoodsInfo";
 import Info from "./Components/Info";
 
-const ProductDetail = () => {
+const ProductDetail = ({ route }) => {
+const { productId } = route.params
+
+  useEffect(() => {
+    console.log(productId)
+  }, [productId])
   return (
     <>
       <ScrollView>
-        <Container>
+          <Container>
           <Header />
           <MainImage />
           <GoodsName />

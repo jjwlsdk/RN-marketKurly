@@ -1,12 +1,15 @@
 import { createStackNavigator, createAppContainer } from "react-navigation";
 import Main from '../Pages/Main/Main';
-import SlideProd from '../Pages/SlideProd/SlideProd';
 import Product from '../Pages/Product/Product';
+import SlideProd from '../Pages/SlideProd/SlideProd';
+import ProductDetail from '../Pages/ProductDetail/ProductDetail';
+
 const ProductContainer = createStackNavigator(
   {
     Main,
+    Product,
     SlideProd,
-    Product
+    ProductDetail
   },
   {
     headerMode: "none"
@@ -14,3 +17,4 @@ const ProductContainer = createStackNavigator(
 );
 
 export default createAppContainer(ProductContainer);
+

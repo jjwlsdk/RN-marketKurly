@@ -7,7 +7,7 @@ export default function Footer() {
 
 const categoryList=({item}) => {
   return (
-    <CategoryItem>{item}</CategoryItem>
+    <CategoryItem item={item} >{item}</CategoryItem>
   )
 }
 
@@ -87,7 +87,7 @@ const CategoryItem = styled.Text`
   padding-top: 8px;
   font-weight: 600;
   font-size: 12px;
-  color: ${({theme}) => theme.color.SubtitlePaleGrey};
+  color: ${({theme, item}) => item === "개인정보처리방침" ? theme.color.fontBlack : theme.color.SubtitlePaleGrey};
 `
 
 const Icon = styled.View`

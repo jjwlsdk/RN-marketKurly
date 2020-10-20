@@ -1,67 +1,60 @@
-import React, {useEffect} from 'react';
-import { useSelector, useDispatch } from "react-redux";
-import { FlatList, TouchableOpacity, Text } from 'react-native';
-// import { fetchingData } from '../../Redux/Product/thunk';
-import actions from '../../Redux/Product/actions';
+import React, { useState, useEffect } from 'react';
+import { FlatList } from 'react-native';
 import styled from 'styled-components';
 import mixIn from '../../Styles/Mixin';
 
 const LIMIT = 10;
 
 export default function SlideProd(props) {
-  const { header, category, subCategoryId, navigation } = props;
-  const dispatch = useDispatch();
-  const { getData, getOffset } = actions;
-  const { data } = useSelector(({ productReducer: { data }}) => ({ data }));
-  const { offset } = useSelector(({ productReducer: { offset }}) => ({ offset }));
-  // const DATA = data.products;
-  const DATA = data;
-
-  // useEffect(()=> {
-  //   dispatch(fetchingData());
-  // },[])
+  const { sort_by_sub_category, navigation } = props;
+  const [ data, setData ] = useState([]);
+  const [ offset, setOffset ] = useState(0);
 
   useEffect(() => {
     fetchData();
   },[])
 
 
-  // const fetchData = async() => {
-  //   try{
-  //   const res = await fetch(`http://localhost:4000/products/`, {
-  //     method: "POST",
-  //     body: JSON.stringify({
-  //         "sub_category_id": subCategoryId
-  //     })
-  //   });
-  //   const resJson = await res.json();
-  //   dispatch(getData(data.concat(resJson.slice(offset, offset + LIMIT))))
-  //   dispatch(await getOffset(offset + LIMIT))
-  // } catch(e) {
-  //   console.log("페치에 실패했습니다.")
-  //   }
-  // }
-
   const fetchData = async() => {
     try{
-    const res = await fetch(`http://localhost:4000/products`);
+    const res = await fetch(`http://192.168.1.219:8000/products/`, {
+      method: "POST",
+      body: JSON.stringify({
+          "sort_by_sub_category": sort_by_sub_category
+      })
+    });
     const resJson = await res.json();
-    dispatch(getData(data.concat(resJson.slice(offset, offset + LIMIT))))
-    dispatch(await getOffset(offset + LIMIT))
+    const newResJson = resJson.products.slice(offset, offset + LIMIT)
+    setData(data.concat(newResJson))
+    await setOffset(offset + LIMIT)
   } catch(e) {
     console.log("페치에 실패했습니다.")
     }
   }
 
-  const renderItem = ({ item }) => {    
+
+  //npx json-server ./src/Data/Product/main.json --port 4000
+  // 서버가 닫혀있을때 이용해주세요
+  // const fetchData = async() => {
+  //   try{
+  //   const res = await fetch(`http://localhost:4000/products`);
+  //   const resJson = await res.json();
+  //   const newResJson = resJson.slice(offset, offset + LIMIT)
+  //   setData(data.concat(newResJson))
+  //   await setOffset(offset + LIMIT)
+  //   console.log(data)
+  // } catch(e) {
+  //   console.log("페치에 실패했습니다.")
+  //   }
+  // }
+
+  const renderItem = ({ item }) => {
     return (
       <ProductContainer 
-        onPress={() => navigation.navigate('Product', {
-          sub_category_id: "2",
-          itemId: "이것은 아이디 입니다.",
-          otherParam: "이것은 파람스입니다."
+        onPress={() => navigation.navigate('ProductDetail', {
+          productId: item.id
       })}>
-        <ProductWrap category={category}>
+        <ProductWrap category={sort_by_sub_category}>
           <ImgWrap>
             <ProductImg source={{uri: item.image ? `${item.image}` : null }}/>
             <Sale source={{uri: item.discount__image ? `${item.discount__image}` : null }} />
@@ -81,20 +74,19 @@ export default function SlideProd(props) {
   const onEndReached = () => {
     fetchData();
   }
-
   return (
-    <Container category={category}>
+    <Container category={sort_by_sub_category}>
       <HeaderContainer>
         <TitleWrap>
           <HeaderWrap>
-          <Header>{header}</Header>
+          <Header>{sort_by_sub_category}</Header>
           <HeaderIcon source={{uri: `https://res.kurly.com/mobile/service/main/1903/ico_title_link.png`}} />
           </HeaderWrap>
-          <TitleDesc category={category}>매일 정오, 컬리의 새로운 상품을 만나보세요</TitleDesc>
+          <TitleDesc category={sort_by_sub_category}>매일 정오, 컬리의 새로운 상품을 만나보세요</TitleDesc>
         </TitleWrap>
       </HeaderContainer>
       <FlatList
-        data={DATA}
+        data={data}
         renderItem={renderItem}
         keyExtractor={(item, idx) => idx.toString()}
         onEndReached={onEndReached}
@@ -106,10 +98,10 @@ export default function SlideProd(props) {
 }
 
 const Container = styled.View`
-  width: 375px;
+  width: 100%;
   height: 402px;
   padding: 0 10px;
-  background-color: ${({theme, category}) => category === "new" ? `${theme.color.grey}` : `${theme.color.White}`};
+  background-color: ${({theme, category}) => category === "지금 가장 핫한 상품" ? `${theme.color.PaleGreyBackground}` : `${theme.color.White}`};
 `
 
 const ProductContainer = styled.TouchableOpacity`
@@ -118,7 +110,7 @@ const ProductContainer = styled.TouchableOpacity`
 
 const ProductWrap = styled.View`
   width: 150px;
-  background-color: ${({theme, category}) => category === "new" ? `${theme.color.grey}` : `${theme.color.White}`};
+  background-color: ${({theme, category}) => category === "지금 가장 핫한 상품" ? `${theme.color.PaleGreyBackground}` : `${theme.color.White}`};
 `
 
 const ImgWrap = styled.View`
@@ -189,7 +181,7 @@ const HeaderIcon =styled.Image`
 `
 
 const TitleDesc = styled.Text`
-  display: ${({category}) => category ==="new" ? "flex" : "none" };
+  display: ${({category}) => category ==="지금 가장 핫한 상품" ? "flex" : "none" };
   padding-top: 4px;
   font-weight: 400;
   font-size: 14px;

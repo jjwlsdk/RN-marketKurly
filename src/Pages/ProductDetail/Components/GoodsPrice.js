@@ -83,10 +83,10 @@ const OriginBox = styled(Dc)``;
 const OriginPrice = styled.Text`
   padding: 2px 0 0 10px;
   font-size: 16px;
-  color: ${({ theme }) => theme.color.MiscountedCostGrey};
+  color: ${({ theme }) => theme.color.DiscountedCostGrey};
   line-height: 24px;
   text-decoration: line-through;
-  text-decoration-color: ${({ theme }) => theme.color.MiscountedCostGrey};
+  text-decoration-color: ${({ theme }) => theme.color.DiscountedCostGrey};
 `;
 
 const OriginWon = styled(OriginPrice)`

@@ -5,7 +5,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import Main from '../Pages/Main/Main';
 import Product from '../Pages/Product/Product';
 import SlideProd from '../Pages/SlideProd/SlideProd';
-import Login from '../Pages/Login';
 import ProductDetail from "../Pages/ProductDetail/ProductDetail";
 
 const Stack = createStackNavigator();
@@ -27,11 +26,12 @@ function HomeScreen({ navigation }) {
       />
       <Button
         onPress={() => navigation.navigate('Product', {
-          sub_category_id: "2",
-          itemId: "이것은 아이디 입니다.",
-          otherParam: "이것은 파람스입니다."
+          sort_by_category: "알뜰쇼핑",
+          sort_by_filter: "혜택순",
+          navigation: navigation
         })}
         title="상품페이지"
+        
       />
     </View>
   );
@@ -45,7 +45,6 @@ return (
       <Stack.Screen name="Main" component={Main} /> 
       <Stack.Screen name="Product" component={Product} />
       <Stack.Screen name="SlideProd" component={SlideProd} />
-      <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="ProductDetail" component={ProductDetail} />
     </Stack.Navigator>
   </NavigationContainer>

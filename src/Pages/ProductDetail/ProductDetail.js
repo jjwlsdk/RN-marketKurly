@@ -23,11 +23,11 @@ const ProductDetail = ({ route }) => {
 
   const fetchData = async () => {
     try {
-      const res = await fetch(`http://localhost:4001/product/${productId}`);
-      // const res = await fetch(`http://192.168.0.30:8000/products/${productId}`);
+      // const res = await fetch(`http://localhost:4001/product/${productId}`);
+      const res = await fetch(`http://172.30.1.4:8000/products/${productId}`);
       const resJson = await res.json();
-      // dispatch(setData(resJson.product));
-      dispatch(setData(resJson));
+      dispatch(setData(resJson.product));
+      // dispatch(setData(resJson));
     } catch (e) {
       console.log("productDetail: 페치에 실패했습니다.");
     }

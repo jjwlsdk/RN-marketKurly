@@ -8,6 +8,11 @@ import SlideProd from "../Pages/SlideProd/SlideProd";
 import ProductDetail from "../Pages/ProductDetail/ProductDetail";
 import Header from "../Pages/ProductDetail/Components/Header/Header";
 import Close from "../Pages/ProductDetail/Components/Header/Components/Close";
+import SignIn from "../Pages/SignIn/SignIn";
+// import SignUp from "../Pages/SignUp/SignUp";
+import SignUp from "../Pages/SignUp/sign";
+import Mypage from "../Pages/Mypage/Mypage";
+import Cart from "../Pages/Cart/CartScreen";
 
 const Stack = createStackNavigator();
 
@@ -38,6 +43,16 @@ function HomeScreen({ navigation }) {
         }
         title="상품페이지"
       />
+      <Button
+        onPress={() => navigation.navigate("SignIn")}
+        title="로그인페이지"
+      />
+      <Button
+        onPress={() => navigation.navigate("SignUp")}
+        title="회원가입페이지"
+      />
+      <Button onPress={() => navigation.navigate("Mypage")} title="마이컬리" />
+      <Button onPress={() => navigation.navigate("Cart")} title="장바구니" />
     </View>
   );
 }
@@ -58,6 +73,26 @@ export default function Router() {
             headerBackTitleVisible: false,
             headerTitle: () => <Header />,
           }}
+        />
+        <Stack.Screen
+          name="SignIn"
+          component={SignIn}
+          options={{ title: "로그인" }}
+        />
+        <Stack.Screen
+          name="SignUp"
+          component={SignUp}
+          options={{ title: "회원가입" }}
+        />
+        <Stack.Screen
+          name="Mypage"
+          component={Mypage}
+          options={{ title: "마이컬리" }}
+        />
+        <Stack.Screen
+          name="Cart"
+          component={Cart}
+          options={{ title: "장바구니" }}
         />
       </Stack.Navigator>
     </NavigationContainer>

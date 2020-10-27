@@ -7,34 +7,48 @@ const GoodsInfo = () => {
 
   return (
     <Container>
-      <List>
-        <Title>판매단위</Title>
-        <Desc>{data.unit}</Desc>
-      </List>
-      <List>
-        <Title>중량/용량</Title>
-        <Desc>{data.weight}</Desc>
-      </List>
-      <List>
-        <Title>배송구분</Title>
-        {/* <Desc>{data.delivery_types.join("/")}</Desc> */}
-      </List>
-      <List>
-        <Title>원산지</Title>
-        <Desc>{data.origin}</Desc>
-      </List>
-      <List>
-        <Title>포장타입</Title>
-        <Desc>{data.shipping_type}</Desc>
-      </List>
-      <List>
-        <Title>알레르기정보</Title>
-        <Desc>{data.allergen}</Desc>
-      </List>
-      <List>
-        <Title>안내사항</Title>
-        <Desc>{data.information}</Desc>
-      </List>
+      {data.unit ? (
+        <List>
+          <Title>판매단위</Title>
+          <Desc>{data.unit}</Desc>
+        </List>
+      ) : null}
+      {data.weight ? (
+        <List>
+          <Title>중량/용량</Title>
+          <Desc>{data.weight}</Desc>
+        </List>
+      ) : null}
+      {data.delivery_types ? (
+        <List>
+          <Title>배송구분</Title>
+          <Desc>{data.delivery_types.join("/")}</Desc>
+        </List>
+      ) : null}
+      {data.origin ? (
+        <List>
+          <Title>원산지</Title>
+          <Desc>{data.origin}</Desc>
+        </List>
+      ) : null}
+      {data.shipping_type ? (
+        <List>
+          <Title>포장타입</Title>
+          <Desc>{data.shipping_type}</Desc>
+        </List>
+      ) : null}
+      {data.allergen ? (
+        <List>
+          <Title>알레르기정보</Title>
+          <Desc>{data.allergen}</Desc>
+        </List>
+      ) : null}
+      {data.information ? (
+        <List>
+          <Title>안내사항</Title>
+          <Desc>{data.information}</Desc>
+        </List>
+      ) : null}
     </Container>
   );
 };

@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ScrollView } from "react-native";
 import styled from "styled-components";
+import actions from "../../../../../Redux/ProductDetail/actions";
 import CountBox from "./CountBox";
 import { Number, OriginPrice } from "../../ProductDesc/Components/GoodsPrice";
 import mixIn from "../../../../../Styles/Mixin";
 
 const CartItem = () => {
+  const dispatch = useDispatch();
+  const { setCart } = actions;
+  const { cart } = useSelector(({ prodDataReducer: { cart } }) => ({ cart }));
   const { data } = useSelector(({ prodDataReducer: { data } }) => ({ data }));
   const [count, setCount] = useState(0);
 
@@ -15,11 +19,35 @@ const CartItem = () => {
   };
 
   useEffect(() => {
-    console.log(count), console.log(data.id);
+    console.log("count:", count), console.log("data.id:", data.id);
+    console.log("cart:", cart);
   }, [count]);
 
-  //엑세스 토큰 (headers)
-  //상품 아이디 & 시리즈 아이디 & 갯수
+  const handleCart = () => {
+    fetch(`http://172.30.1.9:8000/user/cart`, {
+      method: "post",
+      headers: {
+        Authorization: `eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MX0.BAwk01jYJjCSMdifZqmwPWbLi65xV4usBNGiZ8jScPE`,
+      },
+      body: JSON.stringify({
+        product_id: data.id,
+        product_series_id: data.product_series
+          ? Object.keys(count).map((item) => {
+              return Number(item);
+            })
+          : [],
+        product_count: Object.values(count).map((item) => {
+          return item.count;
+        }),
+        // product_series_id: [101, 102],
+        // product_count: [4, 2],
+      }),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+      });
+  };
 
   return (
     <>
@@ -27,9 +55,9 @@ const CartItem = () => {
         <Container>
           {data.product_series.length ? (
             <>
-              {data.product_series.map((item) => (
+              {data.product_series.map((item, idx) => (
                 <>
-                  <Name>{item.name}</Name>
+                  <Name key={idx}>{item.name}</Name>
                   <PriceWrapper>
                     <PriceBox>
                       <Box>
@@ -47,9 +75,11 @@ const CartItem = () => {
               ))}
               <TotalWrapper>
                 <Title>합계</Title>
-                <Total>{`${Object.values(count).reduce((a, b) => {
-                  return a + b;
-                }, 0)}원`}</Total>
+                <Total>{`${Object.values(count)
+                  .map((item) => item.price)
+                  .reduce((a, b) => {
+                    return a + b;
+                  }, 0)}원`}</Total>
               </TotalWrapper>
             </>
           ) : (
@@ -66,7 +96,7 @@ const CartItem = () => {
               </PriceWrapper>
               <TotalWrapper>
                 <Title>합계</Title>
-                <Total>{`${Object.values(count) * data.price}원`}</Total>
+                <Total>{`${count.undefined.count * data.price}원`}</Total>
               </TotalWrapper>
             </>
           )}
@@ -77,6 +107,12 @@ const CartItem = () => {
 };
 
 export default CartItem;
+
+const Btn = styled.Text`
+  width: 200px;
+  height: 200px;
+  color: red;
+`;
 
 const Container = styled.View`
   margin: 10px;

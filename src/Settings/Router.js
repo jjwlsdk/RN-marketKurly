@@ -13,16 +13,13 @@ import SignIn from "../Pages/SignIn/SignIn";
 import SignUp from "../Pages/SignUp/sign";
 import Mypage from "../Pages/Mypage/Mypage";
 import Cart from "../Pages/Cart/CartScreen";
+import ReviewGroup from "../Pages/ProductDetail/Components/Review/Components/ReviewGroup";
 
 const Stack = createStackNavigator();
 
 function HomeScreen({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Button
-        onPress={() => navigation.navigate("ProductDetail")}
-        title="상세페이지"
-      />
       <Button
         onPress={() =>
           navigation.navigate("Main", {
@@ -94,6 +91,7 @@ export default function Router() {
           component={Cart}
           options={{ title: "장바구니" }}
         />
+        <Stack.Screen name="ReviewGroup" component={ReviewGroup} />
       </Stack.Navigator>
     </NavigationContainer>
   );

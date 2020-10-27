@@ -6,7 +6,6 @@ const CountBox = ({ id, price, handleCount }) => {
 
   useEffect(() => {
     handleCount(id, price, count);
-    console.log(count);
   }, [count]);
 
   return (

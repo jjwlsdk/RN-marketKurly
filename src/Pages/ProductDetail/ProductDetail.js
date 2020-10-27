@@ -1,17 +1,13 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import actions from "../../Redux/ProductDetail/actions";
 import { ScrollView } from "react-native";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import actions from "../../Redux/ProductDetail/actions";
 import TabBar from "./Components/TabBar";
 import Cart from "./Components/Cart";
 
 const ProductDetail = ({ route }) => {
   const { productId } = route.params;
-
-  useEffect(() => {
-    console.log(productId);
-  }, [productId]);
 
   const dispatch = useDispatch();
   const { setData, setId } = actions;
@@ -23,8 +19,8 @@ const ProductDetail = ({ route }) => {
 
   const fetchData = async () => {
     try {
-      // const res = await fetch(`http://localhost:4001/product/${productId}`);
-      const res = await fetch(`http://172.30.1.4:8000/products/${productId}`);
+      const res = await fetch(`http://localhost:4001/product/${productId}`);
+      // const res = await fetch(`http://172.30.1.4:8000/products/${productId}`);
       const resJson = await res.json();
       dispatch(setData(resJson.product));
       // dispatch(setData(resJson));

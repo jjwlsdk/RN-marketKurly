@@ -6,19 +6,19 @@ const ReviewGroup = () => {
   const [reviewList, setReviewList] = useState([]);
   const { id } = useSelector(({ prodDataReducer: { id } }) => ({ id }));
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
 
-  const fetchData = async () => {
-    try {
-      const res = await fetch(`http://172.30.1.9:8000/review?product=${id}`);
-      const resJson = await res.json();
-      setReviewList(resJson.Review_list);
-    } catch (e) {
-      console.log("review: 페치에 실패했습니다");
-    }
-  };
+  // const fetchData = async () => {
+  //   try {
+  //     const res = await fetch(`http://172.30.1.9:8000/review?product=${id}`);
+  //     const resJson = await res.json();
+  //     setReviewList(resJson.Review_list);
+  //   } catch (e) {
+  //     console.log("review: 페치에 실패했습니다");
+  //   }
+  // };
 
   return (
     <Container>
@@ -35,7 +35,7 @@ const ReviewGroup = () => {
         </Info>
       </Review>
       {reviewList.map((item, idx) => (
-        <Review key={idx}>
+        <Review key={idx} onPress={() => navigation.navigate("ReviewDetail")}>
           <Subject>{item.title}</Subject>
           <Info>
             <Writer>{item.review_id}</Writer>

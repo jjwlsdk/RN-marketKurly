@@ -1,94 +1,53 @@
-import React, { useState, useRef } from "react";
-import { FlatList } from "react-native-gesture-handler";
-import * as Animatable from 'react-native-animatable';
-import SlideProd from '../../Pages/SlideProd/SlideProd';
-import Recipe from '../Recipe/Recipe';
-import Footer from './Components/Footer';
-import styled from 'styled-components';
+import * as React from 'react';
+import { Text, View,SafeAreaView,Image } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Header from './Header';
+import Home from './Home/Home';
+import Search from './Search';
+import My from './My';
+import Kurly from './Home/Kurly'
+import Theme from '../../Styles/Theme'
 
-export default function Main({navigation}) {
-  const scrollRef = useRef();
-  const [ scrollY , setScrollY ] = useState(0);
+const Tab = createBottomTabNavigator();
 
-  const btnActive = (e) => {
-    setScrollY(e.nativeEvent.contentOffset.y);
-  }
-
-  const onFabPress = () => {
-    scrollRef.current?.scrollToOffset({ animated: true, offset: 0 })
-  }
-
-  const renderItem = ({item}) => {
-    return(
-      <SlideProd
-        sort_by_sub_category={item.sort_by_sub_category}
-        navigation={navigation}
-      />
-    )
-  }
+export default function MyTabs() {
   return (
-    <Container>
-      <FlatList
-        ref={scrollRef}
-        onScroll={btnActive}
-        scrollEventThrottle={16}
-        data={ProdData}
-        renderItem={renderItem}
-        keyExtractor={(item, idx) => idx.toString()}
-        ListFooterComponent={
-          <>
-            <Recipe />
-            <Delivery source={{uri: "https://img-cf.kurly.com/shop/data/main/15/mobile_img_1601803115.png"}}/>
-            <Footer/>
-          </>
-        }
-      />
-      <TopBtn onPress={onFabPress}>
-        <BtnImage
-          valueY={scrollY} 
-          animation={ scrollY > 700 ? "fadeIn" : false }
-          delay={10}
-          source={{uri: "https://res.kurly.com/mobile/service/common/1903/btn_pagetop_v3.png"}}
-        />
-      </TopBtn>
-    </Container>
-  )
+    <>
+    {/* <SafeAreaView >
+     <Image source={{
+          uri: 'https://res.kurly.com/images/marketkurly/logo/logo_type2_x2.png',
+        }}/>
+      {/* <Text> HELLO WORLD</Text> */}
+      {/* </SafeAreaView> */}
+    <Header/>
+    <NavigationContainer>
+    <Tab.Navigator >  
+      <Tab.Screen name="Home" component={Home}/>
+      <Tab.Screen name="Search" component={Search}/>
+      <Tab.Screen name="My" component={My} />
+    </Tab.Navigator>
+    </NavigationContainer>
+    </>
+  );
 }
 
-const Container = styled.View`
-  position: relative;
-  padding: 10px 0 50px;
-  background-color: ${({theme}) => theme.color.White}
-`
+// import {createAppContainer} from 'react-navigation';
+// import {createBottomTabNavigator} from 'react-navigation-tabs';
+// import Home from './Home/Home';
+// import Search from './Search';
+// import My from './My';
 
-const Delivery = styled.Image`
-  width: 100%;
-  height: 76px;
-`
+// const TabNavigator = createBottomTabNavigator({
+//   Home: {
+//     screen: Home,
+//   },
+//   Search: {
+//     screen: Search,
+//   },
+//   My: {
+//     screen: My,
+//   },
+// });
 
-const TopBtn = styled.TouchableOpacity`
-  position: absolute;
-  bottom: 100px;
-  right: 15px;
-`
-
-const BtnImage = Animatable.createAnimatableComponent(styled.Image`
-  opacity: ${({scrollY}) => scrollY > 700 ? "1" : "0"};
-  width: 46px;
-  height: 46px;
-`);
-
-const ProdData = [
-  {
-    sort_by_sub_category: "이 상품 어때요?"
-  },
-  {
-    sort_by_sub_category: "알뜰 상품"
-  },
-  {
-    sort_by_sub_category: "오늘의 신상품"
-  },
-  {
-    sort_by_sub_category: "지금 가장 핫한 상품"
-  }
-]
+// export default createAppContainer(TabNavigator);

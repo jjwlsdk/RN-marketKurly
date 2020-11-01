@@ -4,6 +4,7 @@ import Kurly from '../Pages/Main/Home/Kurly';
 import Product from '../Pages/Product/Product';
 import SlideProd from '../Pages/SlideProd/SlideProd';
 import ProductDetail from '../Pages/ProductDetail/ProductDetail';
+import Search from '../Pages/Search/Search';
 
 const ProductContainer = createStackNavigator(
   {
@@ -11,7 +12,8 @@ const ProductContainer = createStackNavigator(
     Kurly,
     Product,
     SlideProd,
-    ProductDetail
+    ProductDetail,
+    Search
   },
   {
     headerMode: "none"

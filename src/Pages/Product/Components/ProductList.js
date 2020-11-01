@@ -1,54 +1,34 @@
 import React, { useState, useEffect } from "react";
-import { FlatList } from "react-native";
-import styled from "styled-components";
-import mixIn from "../../../Styles/Mixin";
-import Filter from "./Filter";
+import { useSelector } from 'react-redux'
+import { FlatList } from 'react-native';
+import styled from 'styled-components';
+import mixIn from '../../../Styles/Mixin';
+import Filter from './Filter';
 
 const LIMIT = 10;
 
-export default function ProductList({
-  sort_by_category,
-  sort_by_filter,
-  navigation,
-}) {
-  const [data, setData] = useState([]);
-  const [offset, setOffset] = useState(0);
+export default function ProductList({ sort_by_category, sort_by_filter, navigation }) {
+  const [ data, setData ] = useState([]);
+  const [ offset, setOffset ] = useState(0);
+  const { filter } = useSelector(({ productReducer: { filter }}) => ({ filter }));
+  const { delivery } = useSelector(({ productReducer: { delivery }}) => ({ delivery }));
 
-  // const fetchData = async () => {
-  //   try {
-  //     const res = await fetch(`http://172.30.1.4:8000/products/`, {
-  //       method: "POST",
-  //       body: JSON.stringify({
-  //         sort_by_category: sort_by_category,
-  //         sort_by_filter: sort_by_filter,
-  //       }),
-  //     });
-  //     const resJson = await res.json();
-  //     const newResJson = resJson.products.slice(offset, offset + LIMIT);
-  //     setData(data.concat(newResJson));
-  //     await setOffset(offset + LIMIT);
-  //   } catch (e) {
-  //     console.log("페치에 실패했습니다.");
-  //   }
-  // };
-
-  // npx json-server ./src/Data/Product/main.json --port 4000
-  // 서버가 닫혀있을때 이용해주세요
-  // const fetchData = async () => {
-  //   try {
-  //     const res = await fetch(`http://172.30.1.4:8000/products/`, {
-  //       method: "POST",
-  //       body: JSON.stringify({
-  //         sort_by_category: sort_by_category,
-  //         sort_by_filter: sort_by_filter,
-  //       }),
-  //     });
-  //     const resJson = await res.json();
-  //     const newResJson = resJson.products.slice(offset, offset + LIMIT);
-  //     setData(data.concat(newResJson));
-  //     await setOffset(offset + LIMIT);
-  //   } catch (e) {
-  //     console.log("페치에 실패했습니다.");
+  // const fetchData = async() => {
+  //   try{
+  //   const res = await fetch(`http://172.30.1.4:8000/products/`, {
+  //     method: "POST",
+  //     body: JSON.stringify({
+  //         "sort_by_category": sort_by_category,
+  //         "sort_by_filter": filter,
+  //         "sort_by_delivery": delivery
+  //     })
+  //   });
+  //   const resJson = await res.json();
+  //   const newResJson = resJson.products.slice(offset, offset + LIMIT)
+  //   setData(data.concat(newResJson))
+  //   await setOffset(offset + LIMIT)
+  // } catch(e) {
+  //   console.log("페치에 실패했습니다.")
   //   }
   // };
 
@@ -71,7 +51,11 @@ export default function ProductList({
     fetchData();
   }, []);
 
-  const renderItem = ({ item }) => {
+  useEffect(() => {
+    console.log(filter, delivery)
+  },[filter, delivery])
+
+  const renderItem = ({item}) => {    
     return (
       <ProductContainer
         onPress={() =>
@@ -119,8 +103,10 @@ export default function ProductList({
 
   return (
     <Container>
+      <Filter/>
+      <Test>
       <FlatList
-        ListHeaderComponent={Filter}
+        // ListHeaderComponent={Filter}
         data={data}
         renderItem={renderItem}
         keyExtractor={(item, idx) => idx.toString()}
@@ -128,12 +114,14 @@ export default function ProductList({
         onEndReached={onEndReached}
         onEndReachedThreshold={0.6}
       />
+      </Test>
     </Container>
   );
 }
 
 const Container = styled.View`
   padding: 0 10px;
+  margin-top: 5px;
 `;
 
 const ProductContainer = styled.TouchableOpacity`
@@ -211,4 +199,9 @@ const ProductTag = styled.Text`
   font-size: 10px;
   color: ${({ theme }) => theme.color.MainPurple};
   line-height: 14px;
-`;
+`
+
+const Test = styled.View`
+  margin-top: -155px;
+  z-index: -100;
+`

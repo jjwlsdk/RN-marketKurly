@@ -1,24 +1,34 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
 import styled from "styled-components";
 
 const ReviewGroup = () => {
-  const [reviewList, setReviewList] = useState([]);
   const { id } = useSelector(({ prodDataReducer: { id } }) => ({ id }));
+  {
+  }
+  const { review } = useSelector(({ prodDataReducer: { review } }) => ({
+    review,
+  }));
+  const { review_id, title, comment, review_image } = review;
+  const [reviewList, setReviewList] = useState([]);
+  const navigation = useNavigation();
 
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-  // const fetchData = async () => {
-  //   try {
-  //     const res = await fetch(`http://172.30.1.9:8000/review?product=${id}`);
-  //     const resJson = await res.json();
-  //     setReviewList(resJson.Review_list);
-  //   } catch (e) {
-  //     console.log("review: 페치에 실패했습니다");
-  //   }
-  // };
+  const fetchData = async () => {
+    try {
+      const res = await fetch(`http://localhost:4002/Review_list`);
+      // const res = await fetch(`http://172.30.1.9:8000/review?product=${id}`)
+      const resJson = await res.json();
+      setReviewList(resJson);
+      // setReviewList(resJson.Review_list);
+    } catch (e) {
+      console.log("review: 페치에 실패했습니다");
+    }
+  };
 
   return (
     <Container>
@@ -35,8 +45,12 @@ const ReviewGroup = () => {
         </Info>
       </Review>
       {reviewList.map((item, idx) => (
-        <Review key={idx} onPress={() => navigation.navigate("ReviewDetail")}>
-          <Subject>{item.title}</Subject>
+        <Review key={idx}>
+          <Subject
+            onPress={() => navigation.navigate("ReviewDetail", { item: item })}
+          >
+            {item.title}
+          </Subject>
           <Info>
             <Writer>{item.review_id}</Writer>
             <Date>{item.date}</Date>

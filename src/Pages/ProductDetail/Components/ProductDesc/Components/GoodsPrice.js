@@ -12,18 +12,28 @@ const GoodsPrice = () => {
         <DcInfo>회원할인가</DcInfo>
         <PriceBox>
           <Price>
-            <Number>{`${data.discount_price}`}</Number>
+            <Number>{`${
+              data.price === data.discount_price
+                ? data.price?.toLocaleString() || data.price
+                : data.discount_price?.toLocaleString() || data.discount_price
+            }`}</Number>
             <Won>원</Won>
           </Price>
-          <Dc>
-            <DcPercent>{data.discount__percentage}</DcPercent>
-            <Per>%</Per>
-          </Dc>
+          {data.discount__percentage ? (
+            <Dc>
+              <DcPercent>{data.discount__percentage}</DcPercent>
+              <Per>%</Per>
+            </Dc>
+          ) : null}
         </PriceBox>
-        <OriginBox>
-          <OriginPrice>{`${data.price}`}</OriginPrice>
-          <OriginWon>원</OriginWon>
-        </OriginBox>
+        {data.price === data.discount_price ? null : (
+          <OriginBox>
+            <OriginPrice>{`${
+              data.price?.toLocaleString() || data.price
+            }`}</OriginPrice>
+            <OriginWon>원</OriginWon>
+          </OriginBox>
+        )}
         <NoLogin>로그인 후, 회원할인가와 적립혜택이 제공됩니다.</NoLogin>
       </Container>
     </>

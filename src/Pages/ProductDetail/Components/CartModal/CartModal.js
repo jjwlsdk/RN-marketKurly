@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
 import { Dimensions } from "react-native";
 import Modal from "react-native-modal";
+import styled from "styled-components";
 import Header from "./Components/Header";
 import CartItem from "./Components/CartItem";
 import AddCart from "./Components/AddCart";
@@ -11,6 +11,7 @@ const screen = Dimensions.get("screen");
 
 const CartModal = ({ isModal }) => {
   const [dimensions, setDimensions] = useState({ window, screen });
+  const [isModalVisible, setModalVisible] = useState(false);
 
   const onChange = ({ window, screen }) => {
     setDimensions({ window, screen });
@@ -22,8 +23,6 @@ const CartModal = ({ isModal }) => {
       Dimensions.removeEventListener("change", onChange);
     };
   });
-
-  const [isModalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
     setModalVisible(true);

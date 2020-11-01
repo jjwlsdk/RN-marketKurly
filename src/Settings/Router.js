@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Button, View } from "react-native";
+import { Button, View, Text } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import Main from "../Pages/Main/Main";
@@ -13,7 +13,9 @@ import SignIn from "../Pages/SignIn/SignIn";
 import SignUp from "../Pages/SignUp/sign";
 import Mypage from "../Pages/Mypage/Mypage";
 import Cart from "../Pages/Cart/CartScreen";
-import ReviewGroup from "../Pages/ProductDetail/Components/Review/Components/ReviewGroup";
+import ReviewDetail from "../Pages/ProductDetail/Components/Review/Components/ReviewDetail";
+import ReviewDetailHeader from "../Pages/ProductDetail/Components/Review/Components/ReviewDetailHeader";
+import ReviewModal from "../Pages/ProductDetail/Components/ReviewModal/ReviewModal";
 
 const Stack = createStackNavigator();
 
@@ -91,7 +93,16 @@ export default function Router() {
           component={Cart}
           options={{ title: "장바구니" }}
         />
-        <Stack.Screen name="ReviewGroup" component={ReviewGroup} />
+        <Stack.Screen
+          name="ReviewDetail"
+          component={ReviewDetail}
+          options={{
+            headerBackImage: () => <Close />,
+            headerBackTitleVisible: false,
+            headerTitle: () => <ReviewDetailHeader />,
+          }}
+        />
+        <Stack.Screen name="ReviewModal" component={ReviewModal} />
       </Stack.Navigator>
     </NavigationContainer>
   );

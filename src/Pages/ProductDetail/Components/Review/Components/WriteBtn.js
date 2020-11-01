@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 import styled from "styled-components";
 
 const WriteBtn = () => {
+  const navigation = useNavigation();
+
   return (
-    <Wrapper>
-      <BtnTxt>후기 작성</BtnTxt>
-    </Wrapper>
+    <>
+      {/* 모달 작동 안 함 */}
+      <Wrapper onPress={() => navigation.navigate("ReviewModal")}>
+        <BtnTxt>후기 작성</BtnTxt>
+      </Wrapper>
+    </>
   );
 };
 

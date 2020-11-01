@@ -8,46 +8,23 @@ import { Number, OriginPrice } from "../../ProductDesc/Components/GoodsPrice";
 import mixIn from "../../../../../Styles/Mixin";
 
 const CartItem = () => {
+  const [count, setCount] = useState(0);
+  const { data } = useSelector(({ prodDataReducer: { data } }) => ({ data }));
+  const { cart } = useSelector(({ prodDataReducer: { cart } }) => ({ cart }));
+
   const dispatch = useDispatch();
   const { setCart } = actions;
-  const { cart } = useSelector(({ prodDataReducer: { cart } }) => ({ cart }));
-  const { data } = useSelector(({ prodDataReducer: { data } }) => ({ data }));
-  const [count, setCount] = useState(0);
 
   const handleCount = (item, price, num) => {
     setCount({ ...count, [item]: { price: price * num, count: num } });
+    dispatch(setCart({ ...count, [item]: { price: price * num, count: num } }));
   };
 
   useEffect(() => {
-    console.log("count:", count), console.log("data.id:", data.id);
-    console.log("cart:", cart);
+    console.log("count:", count),
+      console.log("data.id:", data.id),
+      console.log("cart:", cart);
   }, [count]);
-
-  const handleCart = () => {
-    fetch(`http://172.30.1.9:8000/user/cart`, {
-      method: "post",
-      headers: {
-        Authorization: `eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MX0.BAwk01jYJjCSMdifZqmwPWbLi65xV4usBNGiZ8jScPE`,
-      },
-      body: JSON.stringify({
-        product_id: data.id,
-        product_series_id: data.product_series
-          ? Object.keys(count).map((item) => {
-              return Number(item);
-            })
-          : [],
-        product_count: Object.values(count).map((item) => {
-          return item.count;
-        }),
-        // product_series_id: [101, 102],
-        // product_count: [4, 2],
-      }),
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        console.log(res);
-      });
-  };
 
   return (
     <>
@@ -61,8 +38,9 @@ const CartItem = () => {
                   <PriceWrapper>
                     <PriceBox>
                       <Box>
-                        <Original>{`${item.price}원`}</Original>
-                        <Discounted>{`${item.price}원`}</Discounted>
+                        <Discounted>{`${
+                          item.price.toLocaleString() || item.price
+                        }원`}</Discounted>
                       </Box>
                       <CountBox
                         id={item.product_series_id}
@@ -75,11 +53,19 @@ const CartItem = () => {
               ))}
               <TotalWrapper>
                 <Title>합계</Title>
-                <Total>{`${Object.values(count)
-                  .map((item) => item.price)
-                  .reduce((a, b) => {
-                    return a + b;
-                  }, 0)}원`}</Total>
+                <Total>{`${
+                  Object.values(count)
+                    .map((item) => item.price)
+                    .reduce((a, b) => {
+                      return a + b;
+                    }, 0)
+                    .toLocaleString() ||
+                  Object.values(count)
+                    .map((item) => item.price)
+                    .reduce((a, b) => {
+                      return a + b;
+                    }, 0)
+                }원`}</Total>
               </TotalWrapper>
             </>
           ) : (
@@ -87,16 +73,36 @@ const CartItem = () => {
               <Name>{data.name}</Name>
               <PriceWrapper>
                 <PriceBox>
-                  <Box>
-                    <Original>{`${data.price}원`}</Original>
-                    <Discounted>{`${data.price}원`}</Discounted>
-                  </Box>
+                  {data.price === data.discount_price ? (
+                    <Box>
+                      <Discounted>{`${
+                        data.price.toLocaleString() || data.price
+                      }원`}</Discounted>
+                    </Box>
+                  ) : (
+                    <Box>
+                      <Original>{`${
+                        data.price.toLocaleString() || data.price
+                      }원`}</Original>
+                      <Discounted>{`${
+                        data.discount_price.toLocaleString() || data.price
+                      }원`}</Discounted>
+                    </Box>
+                  )}
                   <CountBox handleCount={handleCount} />
                 </PriceBox>
               </PriceWrapper>
               <TotalWrapper>
                 <Title>합계</Title>
-                <Total>{`${count.undefined.count * data.price}원`}</Total>
+                <Total>{`${
+                  data.price === data.discount_price
+                    ? (count.undefined.count * data.price).toLocaleString() ||
+                      count.undefined.count * data.price
+                    : (
+                        count.undefined.count * data.discount_price
+                      ).toLocaleString() ||
+                      count.undefined.count * data.discount_price
+                }원`}</Total>
               </TotalWrapper>
             </>
           )}
@@ -107,12 +113,6 @@ const CartItem = () => {
 };
 
 export default CartItem;
-
-const Btn = styled.Text`
-  width: 200px;
-  height: 200px;
-  color: red;
-`;
 
 const Container = styled.View`
   margin: 10px;

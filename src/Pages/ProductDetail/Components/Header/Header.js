@@ -14,13 +14,13 @@ const Header = () => {
 
 export default Header;
 
-const Container = styled.View`
+export const Container = styled.View`
   height: 50px;
   flex-direction: row;
   align-items: center;
 `;
 
-const Name = styled.Text`
+export const Name = styled.Text`
   margin: 0 auto;
   font-weight: 600;
   font-size: 16px;

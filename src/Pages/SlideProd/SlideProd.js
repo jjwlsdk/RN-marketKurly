@@ -15,22 +15,22 @@ export default function SlideProd(props) {
   },[])
 
 
-  const fetchData = async() => {
-    try{
-    const res = await fetch(`http://172.30.1.4:8000/products/`, {
-      method: "POST",
-      body: JSON.stringify({
-          "sort_by_sub_category": sort_by_sub_category
-      })
-    });
-    const resJson = await res.json();
-    const newResJson = resJson.products.slice(offset, offset + LIMIT)
-    setData(data.concat(newResJson))
-    await setOffset(offset + LIMIT)
-  } catch(e) {
-    console.log("페치에 실패했습니다.")
-    }
-  }
+  // const fetchData = async() => {
+  //   try{
+  //   const res = await fetch(`http://172.30.1.4:8000/products/`, {
+  //     method: "POST",
+  //     body: JSON.stringify({
+  //         "sort_by_sub_category": sort_by_sub_category
+  //     })
+  //   });
+  //   const resJson = await res.json();
+  //   const newResJson = resJson.products.slice(offset, offset + LIMIT)
+  //   setData(data.concat(newResJson))
+  //   await setOffset(offset + LIMIT)
+  // } catch(e) {
+  //   console.log("페치에 실패했습니다.")
+  //   }
+  // }
 
 
   // npx json-server ./src/Data/Product/main.json --port 4000

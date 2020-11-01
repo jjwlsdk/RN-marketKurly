@@ -20,10 +20,9 @@ export const fetchingData = () => async(dispatch, getState) => {
       // .then((res) => res.json())
       // .then((res) => dispatch(getData(res)))
       
+      // npx json-server ./src/Data/Product/product.json --port 4000 해야 데이터 열립니당 //
       const res = await fetch('http://localhost:4000/products')
       const resJson = await res.json();
-      // npx json-server ./src/Data/Product/product.json --port 4000 해야 데이터 열립니당 //
-      // const resJson = await res.json();
       dispatch(getData(data.concat(resJson.slice(offset, offset + LIMIT))))
       dispatch(await getOffset(offset + LIMIT))
     } catch(e) {

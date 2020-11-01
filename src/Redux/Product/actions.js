@@ -1,25 +1,21 @@
 const actions = {
-  GET_DATA: "GET_DATA",
   OFF_SET: "OFF_SET",
-  GET_ID: "GET_ID",
-  GET_SLIDEDATA: "GET_SLIDEDATA",
+  GET_FILTER: "GET_FILTER",
+  GET_DELIVERY: "GET_DELIVERY",
 
-  getData: (data) => ({
-    type: actions.GET_DATA,
-    payload: data
-  }),
-  getSlideData: (data) => ({
-    type: actions.GET_SLIDEDATA,
-    payload: data
-  }),
   getOffset: (data) => ({
     type: actions.OFF_SET,
     payload: data
   }),
-  getId: (data) => ({
-    type: actions.GET_ID,
+  getFilter: (data) => ({
+    type: actions.GET_FILTER,
+    payload: data
+  }),
+  getDelivery: (data) => ({
+    type: actions.GET_DELIVERY,
     payload: data
   })
+  
 }
 
 export default actions;

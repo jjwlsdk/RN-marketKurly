@@ -2,7 +2,7 @@ const theme = {
   color: {
     MainPurple: "#5f0080",
     MenuTabGrey: "#666666",
-    MiscountedCostGrey: "#CCCCCC",
+    DiscountedCostGrey: "#CCCCCC",
     SubtitlePaleGrey: "#999999",
     PaleGreyBackground: "#F7F7F7",
     FooterBackground: "#F4F4F4",
@@ -14,7 +14,7 @@ const theme = {
   },
   border: {
     BorderGrey: "1px solid #ddd",
-  }
+  },
 };
 
 export default theme;

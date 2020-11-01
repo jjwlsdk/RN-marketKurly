@@ -1,0 +1,142 @@
+{
+  "products": [
+      {
+          "id": 165,
+          "name": "[마이셰프] 장어 한 마리 덮밥",
+          "image": "https://img-cf.kurly.com/shop/data/goods/1594967292232y0.jpg",
+          "discount__image": null,
+          "price": 11900,
+          "discount__percentage": null,
+          "is_recommended": false,
+          "is_new": false,
+          "tag_names": [
+              "Kurly only"
+          ],
+          "delivery_types": [
+              "샛별배송",
+              "택배배송"
+          ],
+          "discount_price": 11900
+      },
+      {
+          "id": 48,
+          "name": "[담과연] 말린 블루베리 170g",
+          "image": "https://img-cf.kurly.com/shop/data/goods/1588815673248y0.jpg",
+          "discount__image": null,
+          "price": 10900,
+          "discount__percentage": null,
+          "is_recommended": false,
+          "is_new": false,
+          "tag_names": [
+              "Kurly only"
+          ],
+          "delivery_types": [
+              "샛별배송",
+              "택배배송"
+          ],
+          "discount_price": 10900
+      },
+      {
+          "id": 221,
+          "name": "[상하목장] 슬로우 키친 카레 3종",
+          "image": "https://img-cf.kurly.com/shop/data/goods/1535012561951y0.jpg",
+          "discount__image": null,
+          "price": 2980,
+          "discount__percentage": null,
+          "is_recommended": false,
+          "is_new": false,
+          "tag_names": [],
+          "delivery_types": [
+              "샛별배송",
+              "택배배송"
+          ],
+          "discount_price": 2980
+      },
+      {
+          "id": 94,
+          "name": "[우주] 참조기 3마리(240g)(냉동)",
+          "image": "https://img-cf.kurly.com/shop/data/goods/1589523040620y0.jpg",
+          "discount__image": "https://img-cf.kurly.com/shop/data/my_icon/icon_save_25.png",
+          "price": 10900,
+          "discount__percentage": 25,
+          "is_recommended": false,
+          "is_new": false,
+          "tag_names": [
+              "Kurly only"
+          ],
+          "delivery_types": [
+              "샛별배송",
+              "택배배송"
+          ],
+          "discount_price": 8175
+      },
+      {
+          "id": 77,
+          "name": "One-Frozen 노르웨이 고등어 2종 (2개입/3개입)(냉동)",
+          "image": "https://img-cf.kurly.com/shop/data/goods/1524705895438y0.jpg",
+          "discount__image": null,
+          "price": 4500,
+          "discount__percentage": null,
+          "is_recommended": false,
+          "is_new": false,
+          "tag_names": [
+              "Kurly only"
+          ],
+          "delivery_types": [
+              "샛별배송",
+              "택배배송"
+          ],
+          "discount_price": 4500
+      },
+      {
+          "id": 15,
+          "name": "냉동과일 4종",
+          "image": "https://img-cf.kurly.com/shop/data/goods/1464776407133y0.jpg",
+          "discount__image": null,
+          "price": 5900,
+          "discount__percentage": null,
+          "is_recommended": false,
+          "is_new": false,
+          "tag_names": [],
+          "delivery_types": [
+              "샛별배송",
+              "택배배송"
+          ],
+          "discount_price": 5900
+      },
+      {
+          "id": 42,
+          "name": "[스톤릿지] 유기농 건베리류 4종",
+          "image": "https://img-cf.kurly.com/shop/data/goods/1590976306870y0.jpg",
+          "discount__image": null,
+          "price": 7500,
+          "discount__percentage": null,
+          "is_recommended": false,
+          "is_new": false,
+          "tag_names": [],
+          "delivery_types": [
+              "샛별배송",
+              "택배배송"
+          ],
+          "discount_price": 7500
+      },
+      {
+          "id": 113,
+          "name": "[Better me] 냉동 닭가슴살 4종",
+          "image": "https://img-cf.kurly.com/shop/data/goods/1530769556384y0.jpg",
+          "discount__image": "https://img-cf.kurly.com/shop/data/my_icon/icon_save_10.png",
+          "price": 1700,
+          "discount__percentage": 10,
+          "is_recommended": false,
+          "is_new": false,
+          "tag_names": [
+              "Kurly only"
+          ],
+          "delivery_types": [
+              "샛별배송",
+              "택배배송"
+          ],
+          "discount_price": 1530
+      }
+  ]
+}

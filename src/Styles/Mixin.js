@@ -11,5 +11,11 @@ const mixIn = {
     justify-content: ${justfiycontent};
     align-items: ${alignItems};
   `,
-};
+  sale: {
+    fontSize: "12px",
+    color: "#ccc",
+    textDecoration: "line-through",
+    textDecorationColor: "#ccc"
+  }
+}
 export default mixIn;

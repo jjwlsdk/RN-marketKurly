@@ -1,12 +1,15 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 const GoodsName = () => {
+  const { data } = useSelector(({ prodDataReducer: { data } }) => ({ data }));
+
   return (
     <>
       <Container>
-        <Name>컬리플라워 라이스 340g(냉동)</Name>
-        <ShortDesc>저칼로리 식단을 위한 이색 라이스 (1팩/340g)</ShortDesc>
+        <Name>{data.name}</Name>
+        <ShortDesc>{data.sub_title}</ShortDesc>
       </Container>
     </>
   );

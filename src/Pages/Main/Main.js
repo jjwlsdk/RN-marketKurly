@@ -1,13 +1,13 @@
-import * as React from 'react';
-import { Text, View, SafeAreaView, StyleSheet, Image } from 'react-native';
+import React, { useEffect } from "react";
+import { StyleSheet, Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Header from './Header';
 import Home from './Home/Home';
-import Search from './Search';
+import Search from '../Search/Search';
 import MyPage from '../Mypage/Mypage'
-import Kurly from './Home/Kurly'
 import Theme from '../../Styles/Theme'
+import Empty from '../Main/Empty';
 
 const icon = {
   home_on : 'http://res.kurly.com/mobile/service/common/1908/ico_home_on.png',
@@ -20,7 +20,7 @@ const icon = {
 }
 const Tab = createBottomTabNavigator();
 
-export default function MyTabs() {
+export default function Main() {
   return (
     <>
     <Header/>
@@ -45,7 +45,7 @@ export default function MyTabs() {
         }}/>
       <Tab.Screen 
         name="카테고리" 
-        component={Search}
+        component={Empty}
         options={{
           tabBarIcon: ({focused}) => {
             return (
@@ -56,7 +56,7 @@ export default function MyTabs() {
             );
           }
         }}/>
-         <Tab.Screen 
+        <Tab.Screen 
         name="검색" 
         component={Search}
         options={{
@@ -82,7 +82,7 @@ export default function MyTabs() {
             );
           }
         }}
-         />
+        />
     </Tab.Navigator>
     </NavigationContainer>
     </>

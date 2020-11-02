@@ -7,11 +7,13 @@ import Filter from './Filter';
 
 const LIMIT = 10;
 
-export default function ProductList({ sort_by_category, sort_by_filter, navigation }) {
+export default function ProductList({ sort_by_category, navigation }) {
   const [ data, setData ] = useState([]);
   const [ offset, setOffset ] = useState(0);
   const { filter } = useSelector(({ productReducer: { filter }}) => ({ filter }));
   const { delivery } = useSelector(({ productReducer: { delivery }}) => ({ delivery }));
+  
+  // useEffect(()=> console.log(sort_by_category, sort_by_filter),[])
 
   // const fetchData = async() => {
   //   try{
@@ -41,7 +43,7 @@ export default function ProductList({ sort_by_category, sort_by_filter, navigati
       const newResJson = resJson.slice(offset, offset + LIMIT);
       setData(data.concat(newResJson));
       await setOffset(offset + LIMIT);
-      console.log(data);
+      // console.log(data);
     } catch (e) {
       console.log("페치에 실패했습니다.");
     }

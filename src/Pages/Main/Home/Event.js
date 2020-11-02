@@ -1,7 +1,5 @@
 import * as React from 'react';
-import { Text, View, FlatList, StyleSheet ,Image } from 'react-native';
-import {createMaterialTopTabNavigator} from 'react-navigation-tabs';
-import {createAppContainer} from 'react-navigation';
+import { View, FlatList, Image } from 'react-native';
 
 const DATA = [
   {
@@ -23,10 +21,6 @@ const DATA = [
   {
     "id": 5,
     "img": "https://img-cf.kurly.com/shop/data/m/event/01e5ee67e1e6ae1317f5efad7addf40f.jpg"
-  },
-  {
-    "id": 6,
-    "img": "https://img-cf.kurly.com/shop/data/m/event/afc5e48f43ad1b02930ee1046f6c23ac.jpg"
   }
 ]
 
@@ -45,4 +39,3 @@ export default function HomeScreen() {
     </View>
   );
 }
-

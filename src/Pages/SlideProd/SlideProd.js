@@ -5,14 +5,14 @@ import mixIn from "../../Styles/Mixin";
 
 const LIMIT = 10;
 
-export default function SlideProd(props) {
-  const { sort_by_sub_category, navigation } = props;
+export default function SlideProd({ sort_by_sub_category, navigation }) {
   const [data, setData] = useState([]);
   const [offset, setOffset] = useState(0);
 
   useEffect(() => {
     fetchData();
   },[])
+
   
   // const fetchData = async() => {
   //   try{
@@ -51,7 +51,7 @@ export default function SlideProd(props) {
       <ProductContainer
         onPress={() =>
           navigation.navigate("ProductDetail", {
-            productId: item.id,
+            params: {productId: item.id}
           })
         }
       >

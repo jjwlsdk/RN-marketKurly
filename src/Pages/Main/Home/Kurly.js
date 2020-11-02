@@ -5,16 +5,39 @@ import SlideProd from '../../SlideProd/SlideProd';
 import Recipe from '../../Recipe/Recipe';
 import Footer from '../Components/Footer';
 import styled from 'styled-components';
+import { createStackNavigator } from '@react-navigation/stack';
+import ProductDetail from '../../ProductDetail/ProductDetail';
 
-export default function kurly({navigation}) {
+const Stack = createStackNavigator()
+
+export default function Kurly() {
+  return(
+    <Stack.Navigator>
+      <Stack.Screen name="KurlyItem"
+        options={{ headerShown: false }}
+        component={KurlyItem} />
+      <Stack.Screen name="SlideProd"
+        options={{ headerShown: false }}
+        component={SlideProd} />
+      <Stack.Screen name="ProductDetail"
+        options={{ headerShown: false }}
+        component={ProductDetail} />
+    </Stack.Navigator>
+  )
+}
+
+function KurlyItem({ navigation }) {
   const scrollRef = useRef();
   const [ scrollY , setScrollY ] = useState(0);
+
   const btnActive = (e) => {
     setScrollY(e.nativeEvent.contentOffset.y);
   }
+
   const onFabPress = () => {
     scrollRef.current?.scrollToOffset({ animated: true, offset: 0 })
   }
+
   const renderItem = ({item}) => {
     return(
       <SlideProd
@@ -23,6 +46,7 @@ export default function kurly({navigation}) {
       />
     )
   }
+
   return (
     <Container>
       <FlatList
@@ -51,25 +75,29 @@ export default function kurly({navigation}) {
     </Container>
   )
 }
+
 const Container = styled.View`
   position: relative;
-  padding: 10px 0 50px;
   background-color: ${({theme}) => theme.color.White};
 `
+
 const Delivery = styled.Image`
   width: 100%;
   height: 76px;
 `
+
 const TopBtn = styled.TouchableOpacity`
   position: absolute;
   bottom: 100px;
   right: 15px;
 `
+
 const BtnImage = Animatable.createAnimatableComponent(styled.Image`
   opacity: ${({scrollY}) => scrollY > 700 ? '1' : '0'};
   width: 46px;
   height: 46px;
 `);
+
 const ProdData = [
   {
     sort_by_sub_category: '이 상품 어때요?'

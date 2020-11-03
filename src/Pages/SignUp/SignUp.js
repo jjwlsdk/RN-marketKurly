@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 import mixin from "../../Styles/Mixin";
 import Title from "./Components/Title";
 import useInputs from "./useInputs";
-import { get, post } from "./../../Api/api";
+import { get, post } from "../../Api/api";
 import CustomCheckBox from "../../Components/CheckBox";
 import SubmitBtn from "../../Components/PurpleBtn";
 import {
@@ -22,7 +22,7 @@ import AgreementToTerms from "./AgreementToTerms";
 import mixIn from "../../Styles/Mixin";
 import CreateAlert from "../../Components/Alert";
 
-function Sign() {
+function SignUp() {
   const [form, onChange, onFocus, onChangeGuide] = useInputs();
   const { idGuide, pwGuide, confirmPwGuide } = form;
   const {
@@ -312,4 +312,4 @@ const GenderLabel = styled.Text`
 const BtnWrapper = styled.View`
   margin: 0px 16px;
 `;
-export default Sign;
+export default SignUp;

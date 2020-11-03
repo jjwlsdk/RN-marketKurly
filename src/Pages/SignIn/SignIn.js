@@ -5,12 +5,14 @@ import styled from "styled-components";
 import mixin from "../../Styles/Mixin";
 import ValidationModal from "./ValidationModal";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useNavigation } from "@react-navigation/native";
 
-function SignIn({ navigation }) {
+export default function SignIn() {
   const [id, onChangeId] = useState();
   const [pw, onChangePw] = useState();
   const [isModal, setModal] = useState(false);
   const [validationText, setValidationText] = useState("");
+  const navigation = useNavigation();
 
   async function signInWithGoogleAsync() {
     try {
@@ -72,24 +74,24 @@ function SignIn({ navigation }) {
   };
 
   async function submit() {
-    let response = await fetch("http://10.58.4.237:8000/user/signin", {
-      method: "POST",
-      body: JSON.stringify({
-        account: id,
-        password: pw,
-      }),
-    });
+    // let response = await fetch("http://10.58.4.237:8000/user/signin", {
+    //   method: "POST",
+    //   body: JSON.stringify({
+    //     account: id,
+    //     password: pw,
+    //   }),
+    // });
 
-    const result = await response.json();
-    console.log(result.ACCESS_TOKEN);
-    storeData(result.json.ACCESS_TOKEN);
+    // const result = await response.json();
+    // console.log(result.ACCESS_TOKEN);
+    // storeData(result.json.ACCESS_TOKEN);
+
+    navigation.navigate("Home"); //탭 네비
   }
 
   const handleSocialLogin = () => {
     signInWithGoogleAsync();
   };
-
-  // navigation.navigate("SignUp")
 
   return (
     <Container>
@@ -194,5 +196,3 @@ const SocialLoginBtn = styled(Btn)`
 const SocialText = styled(LoginText)`
   color: ${({ theme }) => theme.color.Black};
 `;
-
-export default SignIn;

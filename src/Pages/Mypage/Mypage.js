@@ -4,8 +4,16 @@ import styled from "styled-components";
 import mixin from "../../Styles/Mixin";
 import ListItem from "./Components/ListItem";
 import RightArrowImg from "./RightArrowImg";
+import { useNavigation } from "@react-navigation/native";
 
 function Mypage() {
+  const navigation = useNavigation();
+
+  const handleClick = () => {
+    //저 이거 추가했어욤~~
+    navigation.navigate("SignIn");
+  };
+
   return (
     <Container>
       <Info>
@@ -15,7 +23,7 @@ function Mypage() {
           <BtnText>{`가입 혜택 보기`}</BtnText>
           <RightArrowImg size={10} />
         </MembershipBenefitBtn>
-        <SignInBtn>
+        <SignInBtn onPress={handleClick}>
           <SignText>로그인/회원가입</SignText>
         </SignInBtn>
       </Info>

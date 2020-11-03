@@ -18,7 +18,7 @@ export default function Filter() {
           {label: '택배지역상품'},
         ]}
         style={{ backgroundColor: "#F4F4F4", borderColor: "#F4F4F4" }}
-        arrowStyle={{ "color": "#333" }}
+        arrowColor={"#333"}
         containerStyle={{ "height": 40, "width": 115 }}
         labelStyle={{ "width": 100, "color": "#333", "textAlign": "right" }}
         itemStyle={{ "paddingLeft": 0, "paddingRight": 45 }}
@@ -32,7 +32,8 @@ export default function Filter() {
           {label: '높은 가격순'},
         ]}
         style={{ backgroundColor: "#F4F4F4", borderColor: "#F4F4F4" }}
-        arrowStyle={{ "color": "#333", "paddingRight": 0 }}
+        arrowStyle={{ "paddingRight": 0 }}
+        arrowColor={"#333"}
         containerStyle={{ "height": 40, "width": 110 }}
         labelStyle={{ "width": 100, "color": "#333", "textAlign": "right" }}
         itemStyle={{ "paddingRight": 11 }}

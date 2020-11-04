@@ -11,7 +11,7 @@ import SlideProd from "./src/Pages/SlideProd/SlideProd";
 import ProductDetail from "./src/Pages/ProductDetail/ProductDetail";
 import Header from "./src/Pages/ProductDetail/Components/Header/Header";
 import Close from "./src/Pages/ProductDetail/Components/Header/Components/Close";
-import ReviewModal from "./src/Pages/ProductDetail/Components/ReviewModal/ReviewModal";
+import WriteReview from "./src/Pages/ProductDetail/Components/WriteReview/WriteReview";
 import ReviewDetail from "./src/Pages/ProductDetail/Components/Review/Components/ReviewDetail";
 import ReviewDetailHeader from "./src/Pages/ProductDetail/Components/Review/Components/ReviewDetailHeader";
 import CartScreen from "./src/Pages/Cart/CartScreen";
@@ -63,13 +63,13 @@ export default function App() {
               component={ProductDetail}
             />
             <Stack.Screen
-              name="ReviewModal"
+              name="WriteReview"
               options={{
                 headerBackImage: () => <Close />,
                 headerBackTitleVisible: false,
-                headerTitle: "후기 상세",
+                headerTitle: "후기 쓰기",
               }}
-              component={ReviewModal}
+              component={WriteReview}
             />
             <Stack.Screen
               name="ReviewDetail"

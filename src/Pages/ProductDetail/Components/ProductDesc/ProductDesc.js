@@ -1,4 +1,5 @@
 import React from "react";
+import { ScrollView } from "react-native";
 import styled from "styled-components";
 import MainImage from "./Components/MainImage";
 import GoodsName from "./Components/GoodsName";
@@ -10,14 +11,16 @@ import DetailInfo from "./Components/DetailInfo";
 export default function ProductDesc() {
   return (
     <>
-      <Container>
-        <MainImage />
-        <GoodsName />
-        <GoodsPrice />
-        <GoodsInfo />
-        <Info />
-        <DetailInfo />
-      </Container>
+      <ScrollView showsVerticalScrollIndicator="No">
+        <Container>
+          <MainImage />
+          <GoodsName />
+          <GoodsPrice />
+          <GoodsInfo />
+          <Info />
+          <DetailInfo />
+        </Container>
+      </ScrollView>
     </>
   );
 }

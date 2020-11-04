@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { ScrollView } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
@@ -74,16 +74,16 @@ const CartItem = () => {
                   {data.price === data.discount_price ? (
                     <Box>
                       <Discounted>{`${
-                        data.price.toLocaleString() || data.price
+                        data.price?.toLocaleString() || data.price
                       }원`}</Discounted>
                     </Box>
                   ) : (
                     <Box>
                       <Original>{`${
-                        data.price.toLocaleString() || data.price
+                        data.price?.toLocaleString() || data.price
                       }원`}</Original>
                       <Discounted>{`${
-                        data.discount_price.toLocaleString() || data.price
+                        data.discount_price?.toLocaleString() || data.price
                       }원`}</Discounted>
                     </Box>
                   )}
@@ -94,12 +94,12 @@ const CartItem = () => {
                 <Title>합계</Title>
                 <Total>{`${
                   data.price === data.discount_price
-                    ? (count.undefined.count * data.price).toLocaleString() ||
-                      count.undefined.count * data.price
+                    ? (count?.undefined.count * data.price).toLocaleString() ||
+                      count?.undefined.count * data.price
                     : (
-                        count.undefined.count * data.discount_price
+                        count?.undefined.count * data.discount_price
                       ).toLocaleString() ||
-                      count.undefined.count * data.discount_price
+                      count?.undefined.count * data.discount_price
                 }원`}</Total>
               </TotalWrapper>
             </>

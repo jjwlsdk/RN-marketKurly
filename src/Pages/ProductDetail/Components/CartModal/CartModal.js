@@ -19,6 +19,7 @@ export default function CartModal({ isModal }) {
 
   useEffect(() => {
     Dimensions.addEventListener("change", onChange);
+
     return () => {
       Dimensions.removeEventListener("change", onChange);
     };
@@ -27,6 +28,10 @@ export default function CartModal({ isModal }) {
   useEffect(() => {
     setModalVisible(true);
   }, [isModal]);
+
+  const removeModal = (modal) => {
+    setModalVisible(modal);
+  };
 
   return (
     <BottomModal
@@ -40,7 +45,7 @@ export default function CartModal({ isModal }) {
       <Wrapper style={{ height: dimensions.screen.height - 50 }}>
         <Header />
         <CartItem />
-        <AddCart />
+        <AddCart removeModal={removeModal} />
       </Wrapper>
     </BottomModal>
   );

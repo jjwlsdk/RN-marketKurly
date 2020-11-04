@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import styled from "styled-components";
 
@@ -7,8 +7,7 @@ const WriteBtn = () => {
 
   return (
     <>
-      {/* 모달 작동 안 함 */}
-      <Wrapper onPress={() => navigation.navigate("ReviewModal")}>
+      <Wrapper onPress={() => navigation.navigate("WriteReview")}>
         <BtnTxt>후기 작성</BtnTxt>
       </Wrapper>
     </>

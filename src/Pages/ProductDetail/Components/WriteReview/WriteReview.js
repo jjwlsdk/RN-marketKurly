@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigation } from "@react-navigation/native";
+import { CommonActions, useNavigation } from "@react-navigation/native";
 import styled from "styled-components";
 import actions from "../../../../Redux/ProductDetail/actions";
 import { Wrapper, ButtonTxt } from "../Cart";
 import mixIn from "../../../../Styles/Mixin";
 
-const ReviewModal = () => {
+export default function WriteReview() {
   const [ttl, setTtl] = useState("");
   const [txt, setTxt] = useState("");
   const [photo, setPhoto] = useState(0);
@@ -17,13 +17,16 @@ const ReviewModal = () => {
 
   const { setReview } = actions;
 
-  const { data } = useSelector(({ prodDataReducer: { data } }) => ({ data }));
-  const { review } = useSelector(({ prodDataReducer: { review } }) => ({
-    review,
-  }));
+  const { data, review } = useSelector(
+    ({ prodDataReducer: { data, review } }) => ({
+      data,
+      review,
+    })
+  );
 
   const addReview = () => {
-    navigation.goBack;
+    navigation.dispatch(CommonActions.goBack());
+
     dispatch(
       setReview({
         ...review,
@@ -78,9 +81,7 @@ const ReviewModal = () => {
       </Form>
     </Container>
   );
-};
-
-export default ReviewModal;
+}
 
 const Container = styled.View`
   margin: 20px 10px 0;

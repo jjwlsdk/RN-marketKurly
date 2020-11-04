@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Dimensions, Image } from "react-native";
+import { ScrollView, Dimensions, Image } from "react-native";
 import { useSelector } from "react-redux";
 
 const window = Dimensions.get("window");
@@ -23,15 +23,17 @@ export default function ProductImage() {
 
   return (
     <>
-      <Image
-        source={{
-          uri: data.product_image,
-        }}
-        style={{
-          width: dimensions.screen.width,
-          height: 2000,
-        }}
-      />
+      <ScrollView showsVerticalScrollIndicator="No">
+        <Image
+          source={{
+            uri: data.product_image,
+          }}
+          style={{
+            width: dimensions.screen.width,
+            height: 2000,
+          }}
+        />
+      </ScrollView>
     </>
   );
 }

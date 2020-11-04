@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { ScrollView } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import actions from "../../../../../Redux/ProductDetail/actions";
 import CountBox from "./CountBox";
@@ -8,23 +8,21 @@ import { Number, OriginPrice } from "../../ProductDesc/Components/GoodsPrice";
 import mixIn from "../../../../../Styles/Mixin";
 
 const CartItem = () => {
-  const [count, setCount] = useState(0);
-  const { data } = useSelector(({ prodDataReducer: { data } }) => ({ data }));
-  const { cart } = useSelector(({ prodDataReducer: { cart } }) => ({ cart }));
-
   const dispatch = useDispatch();
+
   const { setCart } = actions;
+
+  const [count, setCount] = useState(0);
+
+  const { data, cart } = useSelector(({ prodDataReducer: { data, cart } }) => ({
+    data,
+    cart,
+  }));
 
   const handleCount = (item, price, num) => {
     setCount({ ...count, [item]: { price: price * num, count: num } });
     dispatch(setCart({ ...count, [item]: { price: price * num, count: num } }));
   };
-
-  useEffect(() => {
-    console.log("count:", count),
-      console.log("data.id:", data.id),
-      console.log("cart:", cart);
-  }, [count]);
 
   return (
     <>

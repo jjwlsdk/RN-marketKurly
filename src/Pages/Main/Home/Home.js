@@ -1,9 +1,9 @@
-import * as React from 'react';
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import Kurly from './Kurly'
-import Product from '../../Product/Product';
-import Event from './Event'
-import Theme from '../../../Styles/Theme'
+import React from "react";
+import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+import Kurly from "./Kurly";
+import Product from "../../Product/Product";
+import Event from "./Event";
+import Theme from "../../../Styles/Theme";
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -11,9 +11,12 @@ export default function Home() {
   return (
     <Tab.Navigator
       tabBarOptions={{
-        activeTintColor:Theme.color.MainPurple, 
-        inactiveTintColor:Theme.color.DarkGray, 
-        indicatorStyle:{borderBottomColor: Theme.color.MainPurple,borderBottomWidth: 2},
+        activeTintColor: Theme.color.MainPurple,
+        inactiveTintColor: Theme.color.DarkGray,
+        indicatorStyle: {
+          borderBottomColor: Theme.color.MainPurple,
+          borderBottomWidth: 2,
+        },
       }}
     >
       <Tab.Screen name="컬리추천" component={Kurly} />

@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import CreateAlert from "../../../Components/Alert";
 
-const CountBox = ({ count, onPlusPress, onMinusPress }) => {
+export default function CountBox({ count, onPlusPress, onMinusPress }) {
   const onDecrease = () => {
     if (count > 1) {
       onMinusPress();
@@ -18,9 +18,7 @@ const CountBox = ({ count, onPlusPress, onMinusPress }) => {
       <Plus onPress={onPlusPress}>+</Plus>
     </Container>
   );
-};
-
-export default CountBox;
+}
 
 const Container = styled.View`
   flex-direction: row;

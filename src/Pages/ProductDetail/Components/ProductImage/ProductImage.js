@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
 import { Dimensions, Image } from "react-native";
+import { useSelector } from "react-redux";
 
 const window = Dimensions.get("window");
 const screen = Dimensions.get("screen");
 
-const ProductImage = () => {
+export default function ProductImage() {
   const { data } = useSelector(({ prodDataReducer: { data } }) => ({ data }));
 
   const [dimensions, setDimensions] = useState({ window, screen });
@@ -28,13 +28,10 @@ const ProductImage = () => {
           uri: data.product_image,
         }}
         style={{
-          //사이즈 생각해보기
           width: dimensions.screen.width,
           height: 2000,
         }}
       />
     </>
   );
-};
-
-export default ProductImage;
+}

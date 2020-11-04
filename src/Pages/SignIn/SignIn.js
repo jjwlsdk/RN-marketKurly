@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { View } from "react-native";
 import * as Google from "expo-google-app-auth";
-import styled from "styled-components";
-import mixin from "../../Styles/Mixin";
-import ValidationModal from "./ValidationModal";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
+import styled from "styled-components";
+import ValidationModal from "./ValidationModal";
+import mixin from "../../Styles/Mixin";
 
 export default function SignIn() {
   const [id, onChangeId] = useState();

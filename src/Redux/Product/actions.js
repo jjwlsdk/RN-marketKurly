@@ -5,17 +5,16 @@ const actions = {
 
   getOffset: (data) => ({
     type: actions.OFF_SET,
-    payload: data
+    payload: data,
   }),
   getFilter: (data) => ({
     type: actions.GET_FILTER,
-    payload: data
+    payload: data,
   }),
   getDelivery: (data) => ({
     type: actions.GET_DELIVERY,
-    payload: data
-  })
-  
-}
+    payload: data,
+  }),
+};
 
 export default actions;

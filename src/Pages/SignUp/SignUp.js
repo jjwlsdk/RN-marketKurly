@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styled, { css } from "styled-components";
-import mixin from "../../Styles/Mixin";
 import Title from "./Components/Title";
 import useInputs from "./useInputs";
-import { get, post } from "../../Api/api";
 import CustomCheckBox from "../../Components/CheckBox";
 import SubmitBtn from "../../Components/PurpleBtn";
 import {
@@ -19,10 +17,11 @@ import {
 } from "./data";
 import { ScrollView } from "react-native-gesture-handler";
 import AgreementToTerms from "./AgreementToTerms";
-import mixIn from "../../Styles/Mixin";
 import CreateAlert from "../../Components/Alert";
+import { post } from "../../Api/api";
+import mixIn from "../../Styles/Mixin";
 
-function SignUp() {
+export default function SignUp() {
   const [form, onChange, onFocus, onChangeGuide] = useInputs();
   const { idGuide, pwGuide, confirmPwGuide } = form;
   const {
@@ -45,7 +44,6 @@ function SignUp() {
     if (!password) {
       CreateAlert("비밀번호를 입력하세요");
     }
-
     submit();
   };
 
@@ -277,19 +275,19 @@ const Input = styled.TextInput`
 `;
 
 const InputWrapper = styled.View`
-  ${mixin.flex("row", "space-between", "center")};
+  ${mixIn.flex("row", "space-between", "center")};
 `;
 
 const DuplicationBtn = styled.TouchableOpacity`
   flex: 0.25;
-  ${mixin.flex()};
+  ${mixIn.flex()};
   ${commonStyle};
   border: ${({ theme }) => theme.color.MainPurple};
 `;
 
 const PhoneBtn = styled.TouchableOpacity`
   flex: 0.35;
-  ${mixin.flex()};
+  ${mixIn.flex()};
   ${commonStyle};
 `;
 
@@ -312,4 +310,3 @@ const GenderLabel = styled.Text`
 const BtnWrapper = styled.View`
   margin: 0px 16px;
 `;
-export default SignUp;

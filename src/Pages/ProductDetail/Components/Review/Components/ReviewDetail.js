@@ -1,18 +1,20 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import mixIn from "../../../../../Styles/Mixin";
 
 const ReviewDetail = ({ route }) => {
   const { item } = route.params;
-
+  useEffect(() => {
+    console.log("route:",route)
+  }, [])
+  
   const { data } = useSelector(({ prodDataReducer: { data } }) => ({ data }));
 
   return (
     <Container>
       <GoodsName>{data.name}</GoodsName>
       <ContentsBox>
-        {/* 이미지 파일이 없어 일단 텍스트로 대체 */}
         {item.review_image ? <Img>{item.review_image}</Img> : null}
         <Title>{item.title}</Title>
         <Contents>{item.comment}</Contents>

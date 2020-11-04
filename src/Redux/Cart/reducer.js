@@ -1,4 +1,5 @@
 import actions from "./actions";
+
 const { REMOVE_DATA, GET_DATA, CHECKED_DATA, UPDATE_COUNT_DATA } = actions;
 
 const INITIAL_STATE = {

@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 import mixIn from "../../../../../Styles/Mixin";
 
-const GoodsPrice = () => {
+export default function GoodsPrice() {
   const { data } = useSelector(({ prodDataReducer: { data } }) => ({ data }));
 
   return (
@@ -38,9 +38,7 @@ const GoodsPrice = () => {
       </Container>
     </>
   );
-};
-
-export default GoodsPrice;
+}
 
 const Container = styled.View`
   padding: 0 10px;
@@ -48,8 +46,8 @@ const Container = styled.View`
 
 const DcInfo = styled.Text`
   padding: 0 10px;
-  font-size: 14px;
   line-height: 20px;
+  font-size: 14px;
 `;
 
 const PriceBox = styled.View`
@@ -63,16 +61,16 @@ const Price = styled.Text`
 export const Number = styled.Text`
   padding-right: 2px;
   font-weight: 700;
-  font-size: 24px;
   line-height: 26px;
+  font-size: 24px;
   letter-spacing: -0.5px;
 `;
 
 export const Won = styled.Text`
   padding: 0 0 0 1px;
-  font-weight: 400;
-  font-size: 16px;
   line-height: 26px;
+  font-size: 16px;
+  font-weight: 400;
 `;
 
 const Dc = styled.View`
@@ -80,10 +78,10 @@ const Dc = styled.View`
 `;
 
 const DcPercent = styled.Text`
-  font-weight: 700;
-  font-size: 24px;
-  color: #fa622f;
   line-height: 26px;
+  font-size: 24px;
+  font-weight: 700;
+  color: #fa622f;
   letter-spacing: -0.5px;
 `;
 
@@ -95,9 +93,9 @@ const OriginBox = styled(Dc)``;
 
 export const OriginPrice = styled.Text`
   padding: 2px 0 0 10px;
+  line-height: 24px;
   font-size: 16px;
   color: ${({ theme }) => theme.color.DiscountedCostGrey};
-  line-height: 24px;
   text-decoration: line-through;
   text-decoration-color: ${({ theme }) => theme.color.DiscountedCostGrey};
 `;
@@ -109,8 +107,8 @@ export const OriginWon = styled(OriginPrice)`
 
 const NoLogin = styled.Text`
   padding: 9px 10px 0;
+  line-height: 19px;
   font-size: 14px;
   color: ${({ theme }) => theme.color.MainPurple};
-  line-height: 19px;
   letter-spacing: -0.5px;
 `;

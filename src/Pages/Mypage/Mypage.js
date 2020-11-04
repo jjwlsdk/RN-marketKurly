@@ -1,16 +1,14 @@
 import React from "react";
-import { TouchableOpacity, View } from "react-native";
-import styled from "styled-components";
-import mixin from "../../Styles/Mixin";
-import ListItem from "./Components/ListItem";
-import RightArrowImg from "./RightArrowImg";
 import { useNavigation } from "@react-navigation/native";
+import styled from "styled-components";
+import ListItem from "./Components/ListItem";
+import mixin from "../../Styles/Mixin";
+import RightArrowImg from "./RightArrowImg";
 
-function Mypage() {
+export default function Mypage() {
   const navigation = useNavigation();
 
   const handleClick = () => {
-    //저 이거 추가했어욤~~
     navigation.navigate("SignIn");
   };
 
@@ -46,9 +44,9 @@ const Container = styled.View`
 const Info = styled.View`
   display: flex;
   align-items: center;
-  background-color: ${({ theme }) => theme.color.White};
-  padding: 15px 16px 20px 16px;
   margin-bottom: 10px;
+  padding: 15px 16px 20px 16px;
+  background-color: ${({ theme }) => theme.color.White};
 `;
 
 const InfoText = styled.Text`
@@ -72,8 +70,8 @@ const SignInBtn = styled.TouchableOpacity`
   width: 100%;
   height: 50px;
   margin-top: 20px;
-  background-color: ${({ theme }) => theme.color.MainPurple};
   border-radius: 5px;
+  background-color: ${({ theme }) => theme.color.MainPurple};
 `;
 
 const SignText = styled.Text`
@@ -94,5 +92,3 @@ const DATA = [
   { title: "이용안내", to: "/" },
   { title: "컬리소개", to: "/" },
 ];
-
-export default Mypage;

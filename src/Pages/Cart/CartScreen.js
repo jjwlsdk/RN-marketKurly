@@ -2,16 +2,19 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ScrollView } from "react-native-gesture-handler";
 import styled from "styled-components";
-import PurpleBtn from "../../Components/PurpleBtn";
+import { getCartData } from "../../Redux/Cart/thunk";
 import Cart from "./Cart";
 import CartResult from "./Components/CartResult";
-import { getCartData } from "../../Redux/Cart/thunk";
+import PurpleBtn from "../../Components/PurpleBtn";
 import mixIn from "../../Styles/Mixin";
 
-function CartScreen(props) {
-  const data = useSelector((state) => state.cartReducer.data);
-  const dispatch = useDispatch();
+export default function CartScreen() {
   const [total, setTotal] = useState();
+
+  const dispatch = useDispatch();
+
+  const data = useSelector((state) => state.cartReducer.data);
+
   useEffect(() => {
     dispatch(getCartData());
   }, []);
@@ -50,5 +53,3 @@ const BtnWrapper = styled.View`
   padding: 0 14px 50px;
   background-color: ${({ theme }) => theme.color.White};
 `;
-
-export default CartScreen;

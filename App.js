@@ -1,17 +1,21 @@
 import * as React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 import { Provider } from "react-redux";
 import { store } from "./src/Redux/store";
 import { ThemeProvider } from "styled-components";
-import Theme from "./src/Styles/Theme";
 import Main from "./src/Pages/Main/Main";
 import SignIn from "./src/Pages/SignIn/SignIn";
-import ProductDetail from "./src/Pages/ProductDetail/ProductDetail";
+import SignUp from "./src/Pages/SignUp/SignUp";
 import SlideProd from "./src/Pages/SlideProd/SlideProd";
-import { createStackNavigator } from "@react-navigation/stack";
-import { NavigationContainer } from "@react-navigation/native";
+import ProductDetail from "./src/Pages/ProductDetail/ProductDetail";
 import Header from "./src/Pages/ProductDetail/Components/Header/Header";
 import Close from "./src/Pages/ProductDetail/Components/Header/Components/Close";
-import SignUp from "./src/Pages/SignUp/SignUp";
+import ReviewModal from "./src/Pages/ProductDetail/Components/ReviewModal/ReviewModal";
+import ReviewDetail from "./src/Pages/ProductDetail/Components/Review/Components/ReviewDetail";
+import ReviewDetailHeader from "./src/Pages/ProductDetail/Components/Review/Components/ReviewDetailHeader";
+import CartScreen from "./src/Pages/Cart/CartScreen";
+import Theme from "./src/Styles/Theme";
 
 const Stack = createStackNavigator();
 
@@ -57,6 +61,33 @@ export default function App() {
                 headerTitle: () => <Header />,
               }}
               component={ProductDetail}
+            />
+            <Stack.Screen
+              name="ReviewModal"
+              options={{
+                headerBackImage: () => <Close />,
+                headerBackTitleVisible: false,
+                headerTitle: "후기 상세",
+              }}
+              component={ReviewModal}
+            />
+            <Stack.Screen
+              name="ReviewDetail"
+              options={{
+                headerBackImage: () => <Close />,
+                headerBackTitleVisible: false,
+                headerTitle: () => <ReviewDetailHeader />,
+              }}
+              component={ReviewDetail}
+            />
+            <Stack.Screen
+              name="CartScreen"
+              options={{
+                headerBackImage: () => <Close />,
+                headerBackTitleVisible: false,
+                headerTitle: "장바구니",
+              }}
+              component={CartScreen}
             />
           </Stack.Navigator>
         </NavigationContainer>

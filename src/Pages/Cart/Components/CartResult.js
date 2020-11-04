@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useDispatch, useSelector } from "react-redux";
 import mixIn from "../../../Styles/Mixin";
 
-function CartResult({ data, onChangeTotal }) {
+export default function CartResult({ data, onChangeTotal }) {
   const [originalTotalCount, setOriginalTotalCount] = useState();
   const [discount, setDiscount] = useState();
   const [deliveryFee, setDelivertFee] = useState();
@@ -77,5 +76,3 @@ const Wrapper = styled.View`
 const Text = styled.Text`
   font-size: 16px;
 `;
-
-export default CartResult;

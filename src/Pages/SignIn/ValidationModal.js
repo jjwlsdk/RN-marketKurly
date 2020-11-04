@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Modal from "react-native-modal";
 import styled from "styled-components";
 
-function ValidationModal({ isModal, text }) {
+export default function ValidationModal({ isModal, text }) {
   const [isModalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
@@ -50,5 +50,3 @@ const Content = styled.Text`
   color: ${({ theme }) => theme.color.White};
   font-size: 16px;
 `;
-
-export default ValidationModal;

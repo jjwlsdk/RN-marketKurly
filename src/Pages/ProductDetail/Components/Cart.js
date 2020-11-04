@@ -38,9 +38,9 @@ export const Wrapper = styled.TouchableOpacity`
 `;
 
 export const ButtonTxt = styled.Text`
-  color: ${({ theme }) => theme.color.White};
-  font-weight: 600;
-  font-size: 16px;
   line-height: 52px;
+  font-size: 16px;
+  font-weight: 600;
+  color: ${({ theme }) => theme.color.White};
   text-align: center;
 `;

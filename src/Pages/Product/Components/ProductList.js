@@ -1,18 +1,24 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from 'react-redux'
-import { FlatList } from 'react-native';
-import styled from 'styled-components';
-import mixIn from '../../../Styles/Mixin';
-import Filter from './Filter';
+import { FlatList } from "react-native";
+import { useSelector } from "react-redux";
+import styled from "styled-components";
+import Filter from "./Filter";
+import { productList } from "../../../config";
+import mixIn from "../../../Styles/Mixin";
 
 const LIMIT = 10;
 
 export default function ProductList({ sort_by_category, navigation }) {
-  const [ data, setData ] = useState([]);
-  const [ offset, setOffset ] = useState(0);
-  const { filter } = useSelector(({ productReducer: { filter }}) => ({ filter }));
-  const { delivery } = useSelector(({ productReducer: { delivery }}) => ({ delivery }));
-  
+  const [data, setData] = useState([]);
+  const [offset, setOffset] = useState(0);
+
+  const { filter, delivery } = useSelector(
+    ({ productReducer: { filter, delivery } }) => ({
+      filter,
+      delivery,
+    })
+  );
+
   // useEffect(()=> console.log(sort_by_category, sort_by_filter),[])
 
   // const fetchData = async() => {
@@ -38,7 +44,7 @@ export default function ProductList({ sort_by_category, navigation }) {
   // 서버가 닫혀있을때 이용해주세요
   const fetchData = async () => {
     try {
-      const res = await fetch(`http://localhost:4000/products`);
+      const res = await fetch(`${productList}`);
       const resJson = await res.json();
       const newResJson = resJson.slice(offset, offset + LIMIT);
       setData(data.concat(newResJson));
@@ -53,11 +59,7 @@ export default function ProductList({ sort_by_category, navigation }) {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    console.log(filter, delivery)
-  },[filter, delivery])
-
-  const renderItem = ({item}) => {    
+  const renderItem = ({ item }) => {
     return (
       <ProductContainer
         onPress={() =>
@@ -105,17 +107,17 @@ export default function ProductList({ sort_by_category, navigation }) {
 
   return (
     <Container>
-      <Filter/>
+      <Filter />
       <Test>
-      <FlatList
-        // ListHeaderComponent={Filter}
-        data={data}
-        renderItem={renderItem}
-        keyExtractor={(item, idx) => idx.toString()}
-        numColumns={2}
-        onEndReached={onEndReached}
-        onEndReachedThreshold={0.6}
-      />
+        <FlatList
+          // ListHeaderComponent={Filter}
+          data={data}
+          renderItem={renderItem}
+          keyExtractor={(item, idx) => idx.toString()}
+          numColumns={2}
+          onEndReached={onEndReached}
+          onEndReachedThreshold={0.6}
+        />
       </Test>
     </Container>
   );
@@ -201,9 +203,9 @@ const ProductTag = styled.Text`
   font-size: 10px;
   color: ${({ theme }) => theme.color.MainPurple};
   line-height: 14px;
-`
+`;
 
 const Test = styled.View`
   margin-top: -155px;
   z-index: -100;
-`
+`;

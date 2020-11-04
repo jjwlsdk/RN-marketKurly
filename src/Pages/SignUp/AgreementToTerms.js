@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Title from "./Components/Title";
 import CustomCheckBox from "../../Components/CheckBox";
-import mixIn from "../../Styles/Mixin";
 import RightArrowImg from "../Mypage/RightArrowImg";
+import mixIn from "../../Styles/Mixin";
 
 export default function AgreementToTerms() {
   const [all, setAll] = useState(false);

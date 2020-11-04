@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
+import React from "react";
 import { useDispatch } from "react-redux";
+import styled from "styled-components";
 import {
   chekcedDataById,
   removeDataById,
@@ -10,12 +10,11 @@ import CustomCheckbox from "../../../Components/CheckBox";
 import CountBox from "./../Components/CountBox";
 import mixIn from "../../../Styles/Mixin";
 
-function item({ data }) {
+export default function item({ data }) {
   const dispatch = useDispatch();
 
   const {
     cart_id,
-    product_id,
     product_image,
     product_name,
     product_series_name,
@@ -170,5 +169,3 @@ const MoneyWrapper = styled.View`
   ${mixIn.flex("row", "flex-end", "flex-start")}
   margin: 9px 0px;
 `;
-
-export default item;

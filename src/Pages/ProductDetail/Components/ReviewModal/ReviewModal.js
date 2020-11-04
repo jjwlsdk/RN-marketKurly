@@ -7,18 +7,23 @@ import { Wrapper, ButtonTxt } from "../Cart";
 import mixIn from "../../../../Styles/Mixin";
 
 const ReviewModal = () => {
-  const navigation = useNavigation();
-  const dispatch = useDispatch();
-  const { setReview } = actions;
-  const { data } = useSelector(({ prodDataReducer: { data } }) => ({ data }));
-  const { review } = useSelector(({ prodDataReducer: { review } }) => ({
-    review,
-  }));
   const [ttl, setTtl] = useState("");
   const [txt, setTxt] = useState("");
   const [photo, setPhoto] = useState(0);
 
+  const dispatch = useDispatch();
+
+  const navigation = useNavigation();
+
+  const { setReview } = actions;
+
+  const { data } = useSelector(({ prodDataReducer: { data } }) => ({ data }));
+  const { review } = useSelector(({ prodDataReducer: { review } }) => ({
+    review,
+  }));
+
   const addReview = () => {
+    navigation.goBack;
     dispatch(
       setReview({
         ...review,
@@ -66,7 +71,7 @@ const ReviewModal = () => {
         </PhotoView>
         <BtnWrapper
           disabled={ttl && txt.length >= 10 ? false : true}
-          onPress={() => addReview}
+          onPress={addReview}
         >
           <ButtonTxt>등록하기</ButtonTxt>
         </BtnWrapper>

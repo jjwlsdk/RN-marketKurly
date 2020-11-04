@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { allCheckedData } from "../../Redux/Cart/thunk";
 import Item from "./Components/item";
-import { useDispatch, useSelector } from "react-redux";
-import { getCartData, allCheckedData } from "../../Redux/Cart/thunk";
 import CustomCheckBox from "../../Components/CheckBox";
 import mixIn from "../../Styles/Mixin";
 
-function Cart({ data }) {
-  const dispatch = useDispatch();
+export default function Cart({ data }) {
   const [allChecked, setAllChecked] = useState();
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setAllChecked(calAllChecked() === data.length);
@@ -43,8 +44,6 @@ const Container = styled.View``;
 
 const TopView = styled.View`
   ${mixIn.flex("row", "flex-start", "flex-start")}
-  display: flex;
-  flex-direction: row;
   margin: 21px 10px 10px;
 `;
 
@@ -59,5 +58,3 @@ const Text = styled.Text`
 const TotalText = styled(Text)`
   font-weight: bold;
 `;
-
-export default Cart;

@@ -1,12 +1,11 @@
 import React, { useState, useRef } from "react";
+import { createStackNavigator } from "@react-navigation/stack";
 import { FlatList } from "react-native-gesture-handler";
 import * as Animatable from "react-native-animatable";
+import styled from "styled-components";
 import SlideProd from "../../SlideProd/SlideProd";
 import Recipe from "../../Recipe/Recipe";
 import Footer from "../Components/Footer";
-import styled from "styled-components";
-import { createStackNavigator } from "@react-navigation/stack";
-import ProductDetail from "../../ProductDetail/ProductDetail";
 
 const Stack = createStackNavigator();
 
@@ -97,14 +96,14 @@ const Delivery = styled.Image`
 
 const TopBtn = styled.TouchableOpacity`
   position: absolute;
-  bottom: 100px;
   right: 15px;
+  bottom: 100px;
 `;
 
 const BtnImage = Animatable.createAnimatableComponent(styled.Image`
-  opacity: ${({ scrollY }) => (scrollY > 700 ? "1" : "0")};
   width: 46px;
   height: 46px;
+  opacity: ${({ scrollY }) => (scrollY > 700 ? "1" : "0")};
 `);
 
 const ProdData = [

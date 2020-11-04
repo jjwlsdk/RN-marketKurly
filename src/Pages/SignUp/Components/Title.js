@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-function Title({ text, isRedDot = true }) {
+export default function Title({ text, isRedDot = true }) {
   return (
     <Container>
       {text}
@@ -19,5 +19,3 @@ const RedDot = styled.Text`
   color: red;
   font-size: 12px;
 `;
-
-export default Title;

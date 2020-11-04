@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FlatList } from "react-native";
 import styled from "styled-components";
+import { productList } from "../../config";
 import mixIn from "../../Styles/Mixin";
 
 const LIMIT = 10;
@@ -11,9 +12,8 @@ export default function SlideProd({ sort_by_sub_category, navigation }) {
 
   useEffect(() => {
     fetchData();
-  },[])
+  }, []);
 
-  
   // const fetchData = async() => {
   //   try{
   //   const res = await fetch(`http://172.30.1.4:8000/products/`, {
@@ -31,27 +31,26 @@ export default function SlideProd({ sort_by_sub_category, navigation }) {
   //   }
   // }
 
-
   //npx json-server ./src/Data/Product/main.json --port 4000
   // 서버가 닫혀있을때 이용해주세요
-  const fetchData = async() => {
-    try{
-    const res = await fetch(`http://localhost:4000/products`);
-    const resJson = await res.json();
-    const newResJson = resJson.slice(offset, offset + LIMIT)
-    setData(data.concat(newResJson))
-    await setOffset(offset + LIMIT)
-  } catch(e) {
-    console.log("페치에 실패했습니다.")
+  const fetchData = async () => {
+    try {
+      const res = await fetch(`${productList}`);
+      const resJson = await res.json();
+      const newResJson = resJson.slice(offset, offset + LIMIT);
+      setData(data.concat(newResJson));
+      await setOffset(offset + LIMIT);
+    } catch (e) {
+      console.log("페치에 실패했습니다.");
     }
-  }
+  };
 
   const renderItem = ({ item }) => {
     return (
       <ProductContainer
         onPress={() =>
           navigation.navigate("ProductDetail", {
-            params: {productId: item.id}
+            params: { productId: item.id },
           })
         }
       >

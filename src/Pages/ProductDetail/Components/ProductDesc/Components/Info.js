@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const Info = () => {
+export default function Info() {
   return (
     <Container>
       <InfoDelivery>
@@ -29,9 +29,7 @@ const Info = () => {
       </InfoDelivery>
     </Container>
   );
-};
-
-export default Info;
+}
 
 const Container = styled.View`
   border-style: solid;
@@ -50,9 +48,9 @@ const InfoDelivery = styled.View`
 
 const TitleDelivery = styled.Text`
   padding-bottom: 6px;
-  font-weight: 600;
-  font-size: 16px;
   line-height: 20px;
+  font-size: 16px;
+  font-weight: 600;
   text-align: center;
 `;
 
@@ -69,10 +67,10 @@ const List = styled.View`
 const Title = styled.Text`
   width: 52px;
   padding: 4px 4px 0 0;
-  font-weight: 500;
-  font-size: 12px;
-  color: ${({ theme }) => theme.color.MainPurple};
   line-height: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  color: ${({ theme }) => theme.color.MainPurple};
 `;
 
 const TitleBlack = styled(Title)`
@@ -92,8 +90,8 @@ const LinkDelevery = styled.Text`
   margin: 22px auto 0;
   border: 1px solid #ddd;
   border-radius: 18px;
-  font-weight: 600;
-  font-size: 14px;
   line-height: 35px;
+  font-size: 14px;
+  font-weight: 600;
   text-align: center;
 `;

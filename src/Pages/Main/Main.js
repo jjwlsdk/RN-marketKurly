@@ -1,32 +1,19 @@
 import React from "react";
 import { StyleSheet, Image } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Header from "./Header";
 import Home from "./Home/Home";
+import Empty from "../Main/Empty";
 import Search from "../Search/Search";
 import MyPage from "../Mypage/Mypage";
 import Theme from "../../Styles/Theme";
-import Empty from "../Main/Empty";
 
-const icon = {
-  home_on: "http://res.kurly.com/mobile/service/common/1908/ico_home_on.png",
-  home: "https://res.kurly.com/mobile/service/common/1908/ico_home.png",
-  category_on:
-    "https://res.kurly.com/mobile/service/common/1908/ico_cate_on.png",
-  category: "https://res.kurly.com/mobile/service/common/1908/ico_cate.png",
-  search: "https://res.kurly.com/mobile/service/common/1908/ico_search.png",
-  MyPage: "https://res.kurly.com/mobile/service/common/1908/ico_mypage.png",
-  cart:
-    "https://res.kurly.com/mobile/service/common/2006/ico_navi_cart_white.svg?v=3",
-};
 const Tab = createBottomTabNavigator();
 
 export default function Main() {
   return (
     <>
       <Header />
-      {/* <NavigationContainer> */}
       <Tab.Navigator
         tabBarOptions={{
           activeTintColor: Theme.color.MainPurple,
@@ -65,7 +52,7 @@ export default function Main() {
           name="검색"
           component={Search}
           options={{
-            tabBarIcon: ({ focused }) => {
+            tabBarIcon: () => {
               return <Image source={{ uri: icon.search }} style={style.icon} />;
             },
           }}
@@ -74,13 +61,12 @@ export default function Main() {
           name="마이컬리"
           component={MyPage}
           options={{
-            tabBarIcon: ({ focused }) => {
+            tabBarIcon: () => {
               return <Image source={{ uri: icon.MyPage }} style={style.icon} />;
             },
           }}
         />
       </Tab.Navigator>
-      {/* </NavigationContainer> */}
     </>
   );
 }
@@ -91,3 +77,13 @@ const style = StyleSheet.create({
     height: 25,
   },
 });
+
+const icon = {
+  home_on: "http://res.kurly.com/mobile/service/common/1908/ico_home_on.png",
+  home: "https://res.kurly.com/mobile/service/common/1908/ico_home.png",
+  category_on:
+    "https://res.kurly.com/mobile/service/common/1908/ico_cate_on.png",
+  category: "https://res.kurly.com/mobile/service/common/1908/ico_cate.png",
+  search: "https://res.kurly.com/mobile/service/common/1908/ico_search.png",
+  MyPage: "https://res.kurly.com/mobile/service/common/1908/ico_mypage.png",
+};

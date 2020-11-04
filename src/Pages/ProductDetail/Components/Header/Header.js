@@ -1,8 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
+import mixIn from "../../../../Styles/Mixin";
 
-const Header = () => {
+export default function Header() {
   const { data } = useSelector(({ prodDataReducer: { data } }) => ({ data }));
 
   return (
@@ -10,14 +11,11 @@ const Header = () => {
       <Name>{data.name}</Name>
     </Container>
   );
-};
-
-export default Header;
+}
 
 export const Container = styled.View`
+  ${mixIn.flex("row", "center", "center")}
   height: 50px;
-  flex-direction: row;
-  align-items: center;
 `;
 
 export const Name = styled.Text`

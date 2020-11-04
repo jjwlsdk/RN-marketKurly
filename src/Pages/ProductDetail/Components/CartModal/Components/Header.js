@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { Image } from "react-native";
+import mixIn from "../../../../../Styles/Mixin";
 
-const Header = () => {
+export default function Header() {
   return (
     <Container>
       <Close
@@ -14,13 +14,10 @@ const Header = () => {
       <Title>상품선택</Title>
     </Container>
   );
-};
-
-export default Header;
+}
 
 const Container = styled.View`
-  flex-direction: row;
-  align-items: center;
+  ${mixIn.flex("row", "center", "center")}
   position: relative;
   height: 55px;
   border-style: solid;
@@ -39,7 +36,7 @@ const Close = styled.Image`
 
 const Title = styled.Text`
   margin: 0 auto;
+  line-height: 26px;
   font-weight: 600;
   font-size: 16px;
-  line-height: 26px;
 `;

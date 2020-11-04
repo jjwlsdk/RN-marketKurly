@@ -7,7 +7,7 @@ import GoodsInfo from "./Components/GoodsInfo";
 import Info from "./Components/Info";
 import DetailInfo from "./Components/DetailInfo";
 
-const ProductDesc = () => {
+export default function ProductDesc() {
   return (
     <>
       <Container>
@@ -20,9 +20,7 @@ const ProductDesc = () => {
       </Container>
     </>
   );
-};
-
-export default ProductDesc;
+}
 
 const Container = styled.View`
   background-color: ${({ theme }) => theme.color.White};

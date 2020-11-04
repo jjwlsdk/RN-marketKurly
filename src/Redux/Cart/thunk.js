@@ -1,5 +1,5 @@
 import actions from "./actions";
-import { get, deleteItem, put } from "./../../Api/api";
+import { deleteItem, put } from "./../../Api/api";
 const { getData, checkedData, removeData, updateCountData } = actions;
 
 export const getCartData = () => async (dispatch) => {

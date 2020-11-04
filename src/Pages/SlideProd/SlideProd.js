@@ -1,19 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { FlatList } from "react-native";
 import styled from "styled-components";
+import { productList } from "../../config";
 import mixIn from "../../Styles/Mixin";
 
 const LIMIT = 10;
 
-export default function SlideProd(props) {
-  const { sort_by_sub_category, navigation } = props;
+export default function SlideProd({ sort_by_sub_category, navigation }) {
   const [data, setData] = useState([]);
   const [offset, setOffset] = useState(0);
 
   useEffect(() => {
     fetchData();
-  },[])
-
+  }, []);
 
   // const fetchData = async() => {
   //   try{
@@ -32,12 +31,11 @@ export default function SlideProd(props) {
   //   }
   // }
 
-
-  // npx json-server ./src/Data/Product/main.json --port 4000
+  //npx json-server ./src/Data/Product/main.json --port 4000
   // 서버가 닫혀있을때 이용해주세요
   const fetchData = async () => {
     try {
-      const res = await fetch(`http://localhost:4000/products`);
+      const res = await fetch(`${productList}`);
       const resJson = await res.json();
       const newResJson = resJson.slice(offset, offset + LIMIT);
       setData(data.concat(newResJson));
@@ -52,7 +50,7 @@ export default function SlideProd(props) {
       <ProductContainer
         onPress={() =>
           navigation.navigate("ProductDetail", {
-            productId: item.id,
+            params: { productId: item.id },
           })
         }
       >

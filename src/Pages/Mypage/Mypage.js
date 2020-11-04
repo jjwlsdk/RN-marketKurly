@@ -1,11 +1,17 @@
 import React from "react";
-import { TouchableOpacity, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import styled from "styled-components";
-import mixin from "../../Styles/Mixin";
 import ListItem from "./Components/ListItem";
+import mixin from "../../Styles/Mixin";
 import RightArrowImg from "./RightArrowImg";
 
-function Mypage() {
+export default function Mypage() {
+  const navigation = useNavigation();
+
+  const handleClick = () => {
+    navigation.navigate("SignIn");
+  };
+
   return (
     <Container>
       <Info>
@@ -15,7 +21,7 @@ function Mypage() {
           <BtnText>{`가입 혜택 보기`}</BtnText>
           <RightArrowImg size={10} />
         </MembershipBenefitBtn>
-        <SignInBtn>
+        <SignInBtn onPress={handleClick}>
           <SignText>로그인/회원가입</SignText>
         </SignInBtn>
       </Info>
@@ -38,9 +44,9 @@ const Container = styled.View`
 const Info = styled.View`
   display: flex;
   align-items: center;
-  background-color: ${({ theme }) => theme.color.White};
-  padding: 15px 16px 20px 16px;
   margin-bottom: 10px;
+  padding: 15px 16px 20px 16px;
+  background-color: ${({ theme }) => theme.color.White};
 `;
 
 const InfoText = styled.Text`
@@ -64,8 +70,8 @@ const SignInBtn = styled.TouchableOpacity`
   width: 100%;
   height: 50px;
   margin-top: 20px;
-  background-color: ${({ theme }) => theme.color.MainPurple};
   border-radius: 5px;
+  background-color: ${({ theme }) => theme.color.MainPurple};
 `;
 
 const SignText = styled.Text`
@@ -86,5 +92,3 @@ const DATA = [
   { title: "이용안내", to: "/" },
   { title: "컬리소개", to: "/" },
 ];
-
-export default Mypage;

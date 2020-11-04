@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 
-const GoodsInfo = () => {
+export default function GoodsInfo() {
   const { data } = useSelector(({ prodDataReducer: { data } }) => ({ data }));
 
   return (
@@ -51,9 +51,7 @@ const GoodsInfo = () => {
       ) : null}
     </Container>
   );
-};
-
-export default GoodsInfo;
+}
 
 const Container = styled.View`
   margin: 19px 20px 0;
@@ -71,14 +69,14 @@ const List = styled.View`
 const Title = styled.Text`
   width: 85px;
   padding-right: 4px;
+  line-height: 20px;
   font-size: 14px;
   color: #666;
-  line-height: 20px;
 `;
 
 const Desc = styled.Text`
+  line-height: 20px;
   font-weight: 500;
   font-size: 14px;
   color: #333;
-  line-height: 20px;
 `;

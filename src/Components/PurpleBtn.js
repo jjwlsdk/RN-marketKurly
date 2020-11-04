@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import mixIn from "../Styles/Mixin";
 
@@ -32,8 +32,8 @@ const Button = styled.TouchableOpacity`
 
 const Txt = styled.Text`
   color: ${({ theme }) => theme.color.White};
-  font-weight: 600;
-  font-size: 16px;
   line-height: 52px;
+  font-size: 16px;
+  font-weight: 600;
   text-align: center;
 `;

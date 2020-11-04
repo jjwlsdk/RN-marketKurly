@@ -9,7 +9,7 @@ import AddCart from "./Components/AddCart";
 const window = Dimensions.get("window");
 const screen = Dimensions.get("screen");
 
-const CartModal = ({ isModal }) => {
+export default function CartModal({ isModal }) {
   const [dimensions, setDimensions] = useState({ window, screen });
   const [isModalVisible, setModalVisible] = useState(false);
 
@@ -44,7 +44,7 @@ const CartModal = ({ isModal }) => {
       </Wrapper>
     </BottomModal>
   );
-};
+}
 
 const BottomModal = styled(Modal)`
   justify-content: flex-end;
@@ -54,5 +54,3 @@ const BottomModal = styled(Modal)`
 const Wrapper = styled.View`
   background-color: ${({ theme }) => theme.color.FooterBackground};
 `;
-
-export default CartModal;

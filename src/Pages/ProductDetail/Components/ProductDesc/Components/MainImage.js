@@ -5,7 +5,7 @@ import { Dimensions, Image } from "react-native";
 const window = Dimensions.get("window");
 const screen = Dimensions.get("screen");
 
-const MainImage = () => {
+export default function MainImage() {
   const { data } = useSelector(({ prodDataReducer: { data } }) => ({ data }));
 
   const [dimensions, setDimensions] = useState({ window, screen });
@@ -31,6 +31,4 @@ const MainImage = () => {
       />
     </>
   );
-};
-
-export default MainImage;
+}

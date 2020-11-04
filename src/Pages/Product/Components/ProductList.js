@@ -1,54 +1,42 @@
 import React, { useState, useEffect } from "react";
 import { FlatList } from "react-native";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
-import mixIn from "../../../Styles/Mixin";
 import Filter from "./Filter";
+import { productList } from "../../../config";
+import mixIn from "../../../Styles/Mixin";
 
 const LIMIT = 10;
 
-export default function ProductList({
-  sort_by_category,
-  sort_by_filter,
-  navigation,
-}) {
+export default function ProductList({ sort_by_category, navigation }) {
   const [data, setData] = useState([]);
   const [offset, setOffset] = useState(0);
 
-  // const fetchData = async () => {
-  //   try {
-  //     const res = await fetch(`http://172.30.1.4:8000/products/`, {
-  //       method: "POST",
-  //       body: JSON.stringify({
-  //         sort_by_category: sort_by_category,
-  //         sort_by_filter: sort_by_filter,
-  //       }),
-  //     });
-  //     const resJson = await res.json();
-  //     const newResJson = resJson.products.slice(offset, offset + LIMIT);
-  //     setData(data.concat(newResJson));
-  //     await setOffset(offset + LIMIT);
-  //   } catch (e) {
-  //     console.log("페치에 실패했습니다.");
-  //   }
-  // };
+  const { filter, delivery } = useSelector(
+    ({ productReducer: { filter, delivery } }) => ({
+      filter,
+      delivery,
+    })
+  );
 
-  // npx json-server ./src/Data/Product/main.json --port 4000
-  // 서버가 닫혀있을때 이용해주세요
-  // const fetchData = async () => {
-  //   try {
-  //     const res = await fetch(`http://172.30.1.4:8000/products/`, {
-  //       method: "POST",
-  //       body: JSON.stringify({
-  //         sort_by_category: sort_by_category,
-  //         sort_by_filter: sort_by_filter,
-  //       }),
-  //     });
-  //     const resJson = await res.json();
-  //     const newResJson = resJson.products.slice(offset, offset + LIMIT);
-  //     setData(data.concat(newResJson));
-  //     await setOffset(offset + LIMIT);
-  //   } catch (e) {
-  //     console.log("페치에 실패했습니다.");
+  // useEffect(()=> console.log(sort_by_category, sort_by_filter),[])
+
+  // const fetchData = async() => {
+  //   try{
+  //   const res = await fetch(`http://172.30.1.4:8000/products/`, {
+  //     method: "POST",
+  //     body: JSON.stringify({
+  //         "sort_by_category": sort_by_category,
+  //         "sort_by_filter": filter,
+  //         "sort_by_delivery": delivery
+  //     })
+  //   });
+  //   const resJson = await res.json();
+  //   const newResJson = resJson.products.slice(offset, offset + LIMIT)
+  //   setData(data.concat(newResJson))
+  //   await setOffset(offset + LIMIT)
+  // } catch(e) {
+  //   console.log("페치에 실패했습니다.")
   //   }
   // };
 
@@ -56,12 +44,12 @@ export default function ProductList({
   // 서버가 닫혀있을때 이용해주세요
   const fetchData = async () => {
     try {
-      const res = await fetch(`http://localhost:4000/products`);
+      const res = await fetch(`${productList}`);
       const resJson = await res.json();
       const newResJson = resJson.slice(offset, offset + LIMIT);
       setData(data.concat(newResJson));
       await setOffset(offset + LIMIT);
-      console.log(data);
+      // console.log(data);
     } catch (e) {
       console.log("페치에 실패했습니다.");
     }
@@ -119,21 +107,25 @@ export default function ProductList({
 
   return (
     <Container>
-      <FlatList
-        ListHeaderComponent={Filter}
-        data={data}
-        renderItem={renderItem}
-        keyExtractor={(item, idx) => idx.toString()}
-        numColumns={2}
-        onEndReached={onEndReached}
-        onEndReachedThreshold={0.6}
-      />
+      <Filter />
+      <Test>
+        <FlatList
+          // ListHeaderComponent={Filter}
+          data={data}
+          renderItem={renderItem}
+          keyExtractor={(item, idx) => idx.toString()}
+          numColumns={2}
+          onEndReached={onEndReached}
+          onEndReachedThreshold={0.6}
+        />
+      </Test>
     </Container>
   );
 }
 
 const Container = styled.View`
   padding: 0 10px;
+  margin-top: 5px;
 `;
 
 const ProductContainer = styled.TouchableOpacity`
@@ -211,4 +203,9 @@ const ProductTag = styled.Text`
   font-size: 10px;
   color: ${({ theme }) => theme.color.MainPurple};
   line-height: 14px;
+`;
+
+const Test = styled.View`
+  margin-top: -155px;
+  z-index: -100;
 `;

@@ -1,5 +1,4 @@
 import { createStore, applyMiddleware } from "redux";
-import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 
 import rootReducer from "./root-reducer";
@@ -11,5 +10,7 @@ const bindMiddleware = (middleware) => {
 };
 
 const store = createStore(rootReducer, bindMiddleware(middlewares));
+
 store.subscribe(() => console.log(store.getState()));
+
 export { store };

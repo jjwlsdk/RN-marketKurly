@@ -6,6 +6,7 @@ import { useNavigation } from "@react-navigation/native";
 import styled from "styled-components";
 import ValidationModal from "./ValidationModal";
 import mixin from "../../Styles/Mixin";
+import { post } from "../../Api/api";
 
 export default function SignIn() {
   const [id, onChangeId] = useState();
@@ -17,14 +18,12 @@ export default function SignIn() {
   async function signInWithGoogleAsync() {
     try {
       const result = await Google.logInAsync({
-        // androidClientId: YOUR_CLIENT_ID_HERE,
         iosClientId:
           "109768551521-6q6ek378dpsspnnnmshhpct19omh7t5m.apps.googleusercontent.com",
         scopes: ["profile", "email"],
       });
 
       if (result.type === "success") {
-        console.log(result.accessToken);
         return SocialSubmit(result.accessToken);
       } else {
         return { cancelled: true };
@@ -43,15 +42,17 @@ export default function SignIn() {
   };
 
   async function SocialSubmit(result) {
-    const res = await fetch("http://192.168.1.8:8000/user/googlesignin", {
+    const res = await fetch("http://localhost:8000/user/googlesignin", {
       method: "GET",
       headers: {
         Authorization: result,
       },
     });
     const resJson = await res.json();
-    console.log(resJson);
-    storeData(res.json.ACCESS_TOKEN);
+    if (resJson.ACCESS_TOKEN) {
+      storeData(resJson.ACCESS_TOKEN);
+      navigation.navigate("Home"); //go home
+    }
   }
 
   const handleModal = (text) => {
@@ -74,19 +75,16 @@ export default function SignIn() {
   };
 
   async function submit() {
-    // let response = await fetch("http://10.58.4.237:8000/user/signin", {
-    //   method: "POST",
-    //   body: JSON.stringify({
-    //     account: id,
-    //     password: pw,
-    //   }),
-    // });
+    const res = await post("user/signin", {
+      account: id,
+      password: pw,
+    });
 
-    // const result = await response.json();
-    // console.log(result.ACCESS_TOKEN);
-    // storeData(result.json.ACCESS_TOKEN);
-
-    navigation.navigate("Home"); //탭 네비
+    if (res.message === "INVALID_USER") {
+    } else {
+      storeData(res.ACCESS_TOKEN);
+      navigation.navigate("Home"); //go home
+    }
   }
 
   const handleSocialLogin = () => {

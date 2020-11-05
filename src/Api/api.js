@@ -1,9 +1,10 @@
-const API = "http://172.30.1.9:8000/";
-const TOKEN =
-  "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MX0.BAwk01jYJjCSMdifZqmwPWbLi65xV4usBNGiZ8jScPE";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const getData = async () => {
+const API = "http://localhost:8000/";
+
+export const getData = async () => {
   try {
+    console.log("getdata");
     const value = await AsyncStorage.getItem("ACCESS_TOKEN");
     if (value !== null) {
       return value;
@@ -14,17 +15,17 @@ const getData = async () => {
 };
 
 export const get = async (path, data) => {
-  console.log(API + path);
+  const token = await getData();
+
   try {
     const res = await fetch(API + path, {
       method: "GET",
       headers: {
-        Authorization: TOKEN,
-        // Authorization : getData(),
+        Authorization: token,
       },
     });
     const result = await res.json();
-    console.log(result);
+
     return result;
   } catch (e) {
     console.log("페치에 실패");
@@ -35,9 +36,7 @@ export const post = async (path, data) => {
   try {
     const res = await fetch(API + path, {
       method: "POST",
-      body: JSON.stringify({
-        data,
-      }),
+      body: JSON.stringify(data),
     });
 
     const result = await res.json();
@@ -49,11 +48,11 @@ export const post = async (path, data) => {
 
 export const deleteItem = async (path, data) => {
   try {
+    const token = await getData();
     const res = await fetch(API + path, {
       method: "DELETE",
       headers: {
-        Authorization: TOKEN,
-        // Authorization : getData(),
+        Authorization: token,
       },
       body: JSON.stringify(data),
     });
@@ -67,11 +66,11 @@ export const deleteItem = async (path, data) => {
 
 export const put = async (path, data) => {
   try {
+    const token = await getData();
     const res = await fetch(API + path, {
       method: "PUT",
       headers: {
-        Authorization: TOKEN,
-        // Authorization : getData(),
+        Authorization: token,
       },
       body: JSON.stringify(data),
     });

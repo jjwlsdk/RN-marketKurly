@@ -32,7 +32,6 @@ const reducer = (state, action) => {
 
   switch (action.type) {
     case "CHANGE_INPUT":
-      console.log(state);
       return {
         ...state,
         inputs: {

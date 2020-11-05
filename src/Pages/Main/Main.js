@@ -13,8 +13,7 @@ const Tab = createBottomTabNavigator();
 export default function Main() {
   return (
     <>
-    <Header/>
-    <NavigationContainer>
+    <Header/> 
     <Tab.Navigator 
     tabBarOptions={{
       activeTintColor:Theme.color.MainPurple, 
@@ -35,7 +34,7 @@ export default function Main() {
         }}/>
       <Tab.Screen 
         name="카테고리" 
-        component={Search}
+        component={Empty}
         options={{
           tabBarIcon: ({focused}) => {
             return (
@@ -46,7 +45,7 @@ export default function Main() {
             );
           }
         }}/>
-         <Tab.Screen 
+      <Tab.Screen 
         name="검색" 
         component={Search}
         options={{
@@ -58,7 +57,8 @@ export default function Main() {
               />
             );
           }
-        }}/>
+        }}
+      />
       <Tab.Screen 
         name="마이컬리" 
         component={MyPage}
@@ -72,8 +72,8 @@ export default function Main() {
             );
           }
         }}
-      >
-        <Tab.Screen
+      />
+        {/* <Tab.Screen
           name="Home"
           component={Home}
           options={{
@@ -118,10 +118,10 @@ export default function Main() {
               return <Image source={{ uri: icon.MyPage }} style={style.icon} />;
             },
           }}
-        />
+        /> */}
       </Tab.Navigator>
     </>
-  );
+  )
 }
 
 const style = StyleSheet.create({

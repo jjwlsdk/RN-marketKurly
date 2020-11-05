@@ -23,7 +23,7 @@ export default function SlideProd({ sort_by_sub_category, navigation }) {
       })
     });
     const resJson = await res.json();
-    const newResJson = resJson.Products.slice(offset, offset + LIMIT)
+    const newResJson = resJson.products.slice(offset, offset + LIMIT)
     setData(data.concat(newResJson))
     await setOffset(offset + LIMIT)
   } catch(e) {

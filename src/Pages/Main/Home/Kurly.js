@@ -48,7 +48,7 @@ function KurlyItem({ navigation }) {
   };
 
   return (
-    <Container>
+    <Container> 
       <FlatList
         ref={scrollRef}
         onScroll={btnActive}

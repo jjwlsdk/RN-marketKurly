@@ -3,6 +3,7 @@ import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useSelector } from "react-redux";
 import { Container, Wrapper, ButtonTxt } from "../../Cart";
+import { addCart } from "../../../../../config";
 
 export default function AddCart({ removeModal }) {
   const [modal, setModal] = useState(true);
@@ -30,10 +31,11 @@ export default function AddCart({ removeModal }) {
   };
 
   const handleCart = () => {
-    fetch(`http://172.30.1.9:8000/user/cart`, {
+    fetch(`${addCart}`, {
       method: "post",
       headers: {
-        Authorization: getToken(),
+        Authorization:
+          "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Mn0.HWaXn9BKeUCMDZuYKDjDggGP-lV8hHTrlwWtAVjdq2I",
       },
       body: JSON.stringify({
         product_id: data.id,

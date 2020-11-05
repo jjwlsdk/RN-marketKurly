@@ -6,59 +6,35 @@ import Filter from "./Filter";
 import { productList } from "../../../config";
 import mixIn from "../../../Styles/Mixin";
 
-const LIMIT = 10;
-
 export default function ProductList({ sort_by_category, navigation }) {
   const [data, setData] = useState([]);
-  const [offset, setOffset] = useState(0);
-
   const { filter, delivery } = useSelector(
     ({ productReducer: { filter, delivery } }) => ({
       filter,
       delivery,
     })
   );
-
-  // useEffect(()=> console.log(sort_by_category, sort_by_filter),[])
-
-  // const fetchData = async() => {
-  //   try{
-  //   const res = await fetch(`http://172.30.1.4:8000/products/`, {
-  //     method: "POST",
-  //     body: JSON.stringify({
-  //         "sort_by_category": sort_by_category,
-  //         "sort_by_filter": filter,
-  //         "sort_by_delivery": delivery
-  //     })
-  //   });
-  //   const resJson = await res.json();
-  //   const newResJson = resJson.products.slice(offset, offset + LIMIT)
-  //   setData(data.concat(newResJson))
-  //   await setOffset(offset + LIMIT)
-  // } catch(e) {
-  //   console.log("페치에 실패했습니다.")
-  //   }
-  // };
-
-  // npx json-server ./src/Data/Product/main.json --port 4000
-  // 서버가 닫혀있을때 이용해주세요
   const fetchData = async () => {
     try {
-      const res = await fetch(`${productList}`);
+      const res = await fetch(`${productList}`, {
+        method: "POST",
+        body: JSON.stringify({
+          sort_by_category: sort_by_category,
+          sort_by_filter: filter,
+          sort_by_delivery: delivery,
+        }),
+      });
       const resJson = await res.json();
-      const newResJson = resJson.slice(offset, offset + LIMIT);
-      setData(data.concat(newResJson));
-      await setOffset(offset + LIMIT);
-      // console.log(data);
+      const newResJson = resJson.products;
+      setData(newResJson);
     } catch (e) {
       console.log("페치에 실패했습니다.");
     }
   };
-
   useEffect(() => {
     fetchData();
-  }, []);
-
+    console.log(data);
+  }, [filter, delivery]);
   const renderItem = ({ item }) => {
     return (
       <ProductContainer
@@ -100,51 +76,37 @@ export default function ProductList({ sort_by_category, navigation }) {
       </ProductContainer>
     );
   };
-
-  const onEndReached = () => {
-    fetchData();
-  };
-
   return (
     <Container>
       <Filter />
       <Test>
         <FlatList
-          // ListHeaderComponent={Filter}
           data={data}
           renderItem={renderItem}
           keyExtractor={(item, idx) => idx.toString()}
           numColumns={2}
-          onEndReached={onEndReached}
-          onEndReachedThreshold={0.6}
         />
       </Test>
     </Container>
   );
 }
-
 const Container = styled.View`
   padding: 0 10px;
   margin-top: 5px;
 `;
-
 const ProductContainer = styled.TouchableOpacity`
   padding: 0 5px 20px 0;
 `;
-
 const ProductWrap = styled.View`
   width: 172px;
   background-color: ${({ theme }) => theme.color.White};
 `;
-
 const ImgWrap = styled.View`
   position: relative;
 `;
-
 const ProductImg = styled.Image`
   height: 222px;
 `;
-
 const Sale = styled.Image`
   position: absolute;
   left: 0;
@@ -152,7 +114,6 @@ const Sale = styled.Image`
   width: 45px;
   height: 39px;
 `;
-
 const Cart = styled.Image`
   position: absolute;
   right: 10px;
@@ -160,23 +121,19 @@ const Cart = styled.Image`
   width: 40px;
   height: 40px;
 `;
-
 const InfoWrap = styled.View`
   height: 73px;
   padding: 8px 10px 0;
 `;
-
 const ProductName = styled.Text`
   font-size: 14px;
   color: ${({ theme }) => theme.color.fontBlack};
   line-height: 20px;
 `;
-
 const PriceWrap = styled.View`
   flex-direction: row;
   padding-top: 4px;
 `;
-
 const DiscountPrice = styled.Text`
   display: ${({ discount, price }) => (discount === price ? "none" : "flex")};
   padding-right: 1px;
@@ -186,12 +143,10 @@ const ProductPrice = styled.Text`
   font-size: 14px;
   color: ${({ theme }) => theme.color.fontBlack};
 `;
-
 const TagWrap = styled.View`
   height: 26px;
   padding: 0 10px;
 `;
-
 const ProductTag = styled.Text`
   align-self: flex-start;
   height: 15px;
@@ -204,7 +159,6 @@ const ProductTag = styled.Text`
   color: ${({ theme }) => theme.color.MainPurple};
   line-height: 14px;
 `;
-
 const Test = styled.View`
   margin-top: -155px;
   z-index: -100;

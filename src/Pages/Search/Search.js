@@ -1,7 +1,8 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { FlatList, Text } from "react-native";
 import * as Animatable from "react-native-animatable";
 import styled from "styled-components";
+import { search } from "../../config";
 import mixIn from "../../Styles/Mixin";
 
 export default function Search({ navigation }) {
@@ -12,19 +13,21 @@ export default function Search({ navigation }) {
   const searchData = async (text) => {
     try {
       setSearchVal(text);
-      const res = await fetch(`http://192.168.0.30:8000/products/search`, {
+      const res = await fetch(`${search}`, {
         method: "POST",
         body: JSON.stringify({
           keyword: text,
         }),
       });
       const resJson = await res.json();
-      const newResJson = resJson;
-      setData(newResJson.products);
+      const newResJson = resJson.products;
+      setData(newResJson);
     } catch (e) {
       console.log("페치에 실패했습니다.");
     }
   };
+
+  useEffect(() => {}, []);
 
   const renderItem = ({ item }) => {
     return (

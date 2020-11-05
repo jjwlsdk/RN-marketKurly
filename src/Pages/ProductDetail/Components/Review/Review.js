@@ -18,11 +18,9 @@ export default function ReviewGroup({ navigation }) {
 
   const fetchData = async () => {
     try {
-      const res = await fetch(`${reviewGroup}`);
-      // const res = await fetch(`http://172.30.1.9:8000/review?product=${id}`)
+      const res = await fetch(`${reviewGroup}?product=${id}`);
       const resJson = await res.json();
-      setReviewList(resJson);
-      // setReviewList(resJson.Review_list);
+      setReviewList(resJson.Review_list);
     } catch (e) {
       console.log("review: 페치에 실패했습니다");
     }

@@ -6,7 +6,7 @@ import Cart from "./Components/Cart";
 import { productDetail } from "../../config";
 
 const ProductDetail = ({ route }) => {
-  const { productId } = route.params.params;
+  const { productId } = route.params;
 
   const dispatch = useDispatch();
 
@@ -20,10 +20,8 @@ const ProductDetail = ({ route }) => {
   const fetchData = async () => {
     try {
       const res = await fetch(`${productDetail}${productId}`);
-      // const res = await fetch(`http://172.30.1.4:8000/products/${productId}`);
       const resJson = await res.json();
-      // dispatch(setData(resJson.product));
-      dispatch(setData(resJson));
+      dispatch(setData(resJson.product));
     } catch (e) {
       console.log("productDetail: 페치에 실패했습니다.");
     }

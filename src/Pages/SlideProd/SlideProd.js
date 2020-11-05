@@ -14,30 +14,16 @@ export default function SlideProd({ sort_by_sub_category, navigation }) {
     fetchData();
   }, []);
 
-  // const fetchData = async() => {
-  //   try{
-  //   const res = await fetch(`http://172.30.1.4:8000/products/`, {
-  //     method: "POST",
-  //     body: JSON.stringify({
-  //         "sort_by_sub_category": sort_by_sub_category
-  //     })
-  //   });
-  //   const resJson = await res.json();
-  //   const newResJson = resJson.products.slice(offset, offset + LIMIT)
-  //   setData(data.concat(newResJson))
-  //   await setOffset(offset + LIMIT)
-  // } catch(e) {
-  //   console.log("페치에 실패했습니다.")
-  //   }
-  // }
-
-  //npx json-server ./src/Data/Product/main.json --port 4000
-  // 서버가 닫혀있을때 이용해주세요
   const fetchData = async () => {
     try {
-      const res = await fetch(`${productList}`);
+      const res = await fetch(`${productList}`, {
+        method: "POST",
+        body: JSON.stringify({
+          sort_by_sub_category: sort_by_sub_category,
+        }),
+      });
       const resJson = await res.json();
-      const newResJson = resJson.slice(offset, offset + LIMIT);
+      const newResJson = resJson.products.slice(offset, offset + LIMIT);
       setData(data.concat(newResJson));
       await setOffset(offset + LIMIT);
     } catch (e) {
@@ -50,7 +36,7 @@ export default function SlideProd({ sort_by_sub_category, navigation }) {
       <ProductContainer
         onPress={() =>
           navigation.navigate("ProductDetail", {
-            params: { productId: item.id },
+            productId: item.id,
           })
         }
       >

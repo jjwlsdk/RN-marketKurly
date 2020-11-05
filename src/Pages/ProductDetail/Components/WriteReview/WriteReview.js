@@ -24,16 +24,19 @@ export default function WriteReview() {
     })
   );
 
+  const { date } = review;
+
   const addReview = () => {
     navigation.dispatch(CommonActions.goBack());
 
     dispatch(
       setReview({
         ...review,
-        review_id: null,
+        review_id: "이조은",
         title: ttl,
         comment: txt,
         review_image: null,
+        date: date,
       })
     );
   };
@@ -60,7 +63,7 @@ export default function WriteReview() {
             <Title photo>사진 등록</Title>
             <Count photo>{photo} 장 / 최대 8장</Count>
           </TitlePhoto>
-          <AddPhoto>
+          <AddPhoto onPress={() => console.log("worked")}>
             <Plus
               source={{
                 uri: "https://res.kurly.com/pc/ico/1806/img_add_thumb_x2.png",
@@ -138,7 +141,7 @@ const TitlePhoto = styled.View`
   ${mixIn.flex("row", "space-between", "center")}
 `;
 
-const AddPhoto = styled.View`
+const AddPhoto = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
   margin-top: 19px;

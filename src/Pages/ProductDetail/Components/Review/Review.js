@@ -10,7 +10,7 @@ export default function ReviewGroup({ navigation }) {
     id,
     review,
   }));
-  const { review_id, title, comment, review_image } = review;
+  const { review_id, title, date } = review;
 
   useEffect(() => {
     fetchData();
@@ -64,6 +64,21 @@ export default function ReviewGroup({ navigation }) {
           </ReviewBox>
         );
       })}
+      {title ? (
+        <ReviewBox>
+          <Subject
+            onPress={() =>
+              navigation.navigate("ReviewDetail", { item: review })
+            }
+          >
+            {title}
+          </Subject>
+          <Info>
+            <Writer>{review_id}</Writer>
+            <Date>{date}</Date>
+          </Info>
+        </ReviewBox>
+      ) : null}
     </Container>
   );
 }

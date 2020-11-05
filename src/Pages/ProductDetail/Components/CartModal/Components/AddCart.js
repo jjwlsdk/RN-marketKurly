@@ -50,13 +50,10 @@ export default function AddCart({ removeModal }) {
       }),
     })
       .then((res) => res.json())
-      .then((res) => {
-        console.log(res);
+      .then(() => {
+        setModal(false);
+        navigation.navigate("CartScreen");
       });
-
-    setModal(false);
-
-    navigation.navigate("CartScreen");
   };
 
   return (

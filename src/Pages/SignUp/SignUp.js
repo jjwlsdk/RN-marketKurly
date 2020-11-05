@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { ScrollView } from "react-native-gesture-handler";
 import styled, { css } from "styled-components";
+import { useNavigation } from "@react-navigation/native";
 import Title from "./Components/Title";
 import useInputs from "./useInputs";
 import CustomCheckBox from "../../Components/CheckBox";
@@ -29,14 +30,14 @@ export default function SignUp() {
     password,
     name,
     email,
-    phoneNumber,
+    phone_number,
     address,
     gender,
     birth,
   } = form.inputs;
+  const navigation = useNavigation();
 
   const handleDuplicateCheck = () => {
-    console.log("diplicate");
     duplicateSubmit();
   };
 
@@ -48,12 +49,9 @@ export default function SignUp() {
   };
 
   async function duplicateSubmit() {
-    // const res = post("user/signup", { account: account });
+    const res = await post("user/signup", { account: account });
 
-    // await ;
-    // console.log(res.message);
-
-    if (res === "ACCOUNT_SUCCESS") {
+    if (res.message === "ACCOUNT_SUCCESS") {
       CreateAlert("사용하실 수 있는 아이디입니다!", () =>
         onChangeGuide("id", "isDuplicate", true)
       );
@@ -67,8 +65,11 @@ export default function SignUp() {
   }
 
   async function submit() {
-    const res = post("user/signup", form.inputs);
-    console.log(res);
+    const res = await post("user/signup", form.inputs);
+
+    if (res.message === "SIGNUP_SUCCESS") {
+      navigation.navigate("Home");
+    }
   }
 
   useEffect(() => {
@@ -146,7 +147,6 @@ export default function SignUp() {
               <GuideText isValidate={pwGuide.isValidate}>
                 - 영문/숫자/특수문자(공백 제외)만 허용하며,2개 이상 조합
               </GuideText>
-              <Text>- 동일한 숫자 3개 이상 연속 사용 불가</Text>
             </GuideWrapper>
           )}
           <Title text={CONFIRM_PASSWORD.title} />
@@ -190,9 +190,9 @@ export default function SignUp() {
               flex={0.6}
               keyboardType="numeric"
               onChangeText={(text) => {
-                onChange(text, "phoneNumber");
+                onChange(text, "phone_number");
               }}
-              value={phoneNumber}
+              value={phone_number}
             />
             <PhoneBtn>
               <Text>인증번호 받기</Text>

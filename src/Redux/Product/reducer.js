@@ -1,4 +1,5 @@
 import actions from "./actions";
+
 const { OFF_SET, GET_FILTER, GET_DELIVERY } = actions;
 
 const INITIAL_STATE = {

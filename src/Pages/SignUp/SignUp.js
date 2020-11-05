@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { ScrollView } from "react-native-gesture-handler";
 import styled, { css } from "styled-components";
 import Title from "./Components/Title";
 import useInputs from "./useInputs";
@@ -15,7 +16,6 @@ import {
   BIRTH,
   GENDER,
 } from "./data";
-import { ScrollView } from "react-native-gesture-handler";
 import AgreementToTerms from "./AgreementToTerms";
 import CreateAlert from "../../Components/Alert";
 import { post } from "../../Api/api";

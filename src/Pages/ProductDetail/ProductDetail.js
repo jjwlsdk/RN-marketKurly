@@ -1,7 +1,5 @@
 import React, { useEffect } from "react";
-import { ScrollView } from "react-native";
 import { useDispatch } from "react-redux";
-import styled from "styled-components";
 import actions from "../../Redux/ProductDetail/actions";
 import TabBar from "./Components/TabBar";
 import Cart from "./Components/Cart";
@@ -33,18 +31,10 @@ const ProductDetail = ({ route }) => {
 
   return (
     <>
-      <Container>
-        <ScrollView>
-          <TabBar />
-        </ScrollView>
-        <Cart />
-      </Container>
+      <TabBar />
+      <Cart />
     </>
   );
 };
 
 export default ProductDetail;
-
-const Container = styled.View`
-  background-color: ${({ theme }) => theme.color.White};
-`;

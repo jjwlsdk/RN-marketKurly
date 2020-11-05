@@ -12,6 +12,7 @@ function TabBar() {
       tabBarOptions={{
         activeTintColor: "#5f0080",
         inactiveTintColor: "#666",
+        labelStyle: { width: 80 },
         indicatorStyle: { borderBottomColor: "#5f0080", borderBottomWidth: 2 },
       }}
     >

@@ -1,41 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
-import WriteBtn from "./Components/WriteBtn";
-import ReviewDetail from "../Review/Components/ReviewDetail";
-import ReviewModal from "../ReviewModal/ReviewModal";
-import { createStackNavigator } from "@react-navigation/stack";
 import { reviewGroup } from "../../../../config";
 
-const Stack = createStackNavigator();
+export default function ReviewGroup({ navigation }) {
+  const [reviewList, setReviewList] = useState([]);
 
-export default function Review() {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen 
-        name="ReviewGroup"
-        options={{ headerShown: false }}
-        component={ReviewGroup}
-      />
-      <Stack.Screen 
-      name="WriteBtn"
-      options={{ headerShown: false }}
-      component={WriteBtn}/>      
-    </Stack.Navigator>
-  );
-};
-
-function ReviewGroup({navigation}) {
-  const { id } = useSelector(({ prodDataReducer: { id } }) => ({ id }));
-  const { review } = useSelector(({ prodDataReducer: { review } }) => ({
+  const { id, review } = useSelector(({ prodDataReducer: { id, review } }) => ({
+    id,
     review,
   }));
   const { review_id, title, comment, review_image } = review;
-  const [reviewList, setReviewList] = useState([]);
 
   useEffect(() => {
     fetchData();
-    console.log("props:::", navigation)
   }, []);
 
   const fetchData = async () => {
@@ -50,51 +28,66 @@ function ReviewGroup({navigation}) {
     }
   };
 
-  return(
-    <TestContainer>
-      <Wrapper onPress={() => navigation.navigate("ReviewModal")}>
-        <BtnTxt>후기 작성</BtnTxt>
+  return (
+    <Container>
+      <Wrapper onPress={() => navigation.navigate("WriteReview")}>
+        <BtnTxt>후기 쓰기</BtnTxt>
       </Wrapper>
-      <TestReview>
+      <ReviewBox>
         <Subject>[공지] 금주의 Best 후기 안내</Subject>
         <Info>
           <Writer>마켓컬리 관리자</Writer>
+          <Date>2020-11-05</Date>
         </Info>
-      </TestReview>
-      <TestReview>
+      </ReviewBox>
+      <ReviewBox>
         <Subject>[공지] 상품 후기 적립금 정책 안내</Subject>
         <Info>
           <Writer>마켓컬리 관리자</Writer>
+          <Date>2020-11-05</Date>
         </Info>
-      </TestReview>
+      </ReviewBox>
       {reviewList.map((item, idx) => {
-        console.log("review:",item)
-        return(
-        <TestReview key={idx}>
-          <Subject
-            onPress={() => navigation.navigate("ReviewDetail", { item: item })}
-          >
-            {item.title}
-          </Subject>
-          <Info>
-            <Writer>{item.review_id}</Writer>
-            <Date>{item.date}</Date>
-          </Info>
-        </TestReview>)}
-      )}
-    </TestContainer>
-  )
+        return (
+          <ReviewBox key={idx}>
+            <Subject
+              onPress={() =>
+                navigation.navigate("ReviewDetail", { item: item })
+              }
+            >
+              {item.title}
+            </Subject>
+            <Info>
+              <Writer>{item.review_id}</Writer>
+              <Date>{item.date?.split("T")[0]}</Date>
+            </Info>
+          </ReviewBox>
+        );
+      })}
+    </Container>
+  );
 }
+
 const Container = styled.View`
   padding: 20px 10px;
-  background-color: ${({ theme }) => theme.color.FooterBackground};
 `;
 
-const TestContainer = styled.View`
-  padding-top: 20px;
+const Wrapper = styled.TouchableOpacity`
+  height: 50px;
+  margin-bottom: 20px;
+  border: 1px solid #5f0080;
+  background-color: #fff;
 `;
 
-const TestReview = styled.View`
+const BtnTxt = styled.Text`
+  font-weight: 600;
+  font-size: 16px;
+  color: #5f0080;
+  line-height: 50px;
+  text-align: center;
+`;
+
+const ReviewBox = styled.View`
   padding: 10px 10px 8px;
   background-color: ${({ theme }) => theme.color.White};
   border-style: solid;
@@ -110,8 +103,6 @@ const Subject = styled.Text`
 `;
 
 const Info = styled.View`
-  flex-direction: row;
-  height: 26px;
   padding-top: 8px;
 `;
 
@@ -120,20 +111,6 @@ const Writer = styled.Text`
   font-size: 12px;
   color: #666;
   line-height: 18px;
-`;
-
-const Wrapper = styled.TouchableOpacity`
-  height: 50px;
-  border: 1px solid #5f0080;
-  background-color: #fff;
-`;
-
-const BtnTxt = styled.Text`
-  font-weight: 600;
-  font-size: 16px;
-  color: #5f0080;
-  line-height: 50px;
-  text-align: center;
 `;
 
 const Date = styled(Writer)``;

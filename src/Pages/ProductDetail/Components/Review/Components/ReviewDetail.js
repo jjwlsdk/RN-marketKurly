@@ -1,14 +1,13 @@
-import React, {useEffect} from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import mixIn from "../../../../../Styles/Mixin";
 
 const ReviewDetail = ({ route }) => {
+  const [likes, useLikes] = useState(0);
+
   const { item } = route.params;
-  useEffect(() => {
-    console.log("route:",route)
-  }, [])
-  
+
   const { data } = useSelector(({ prodDataReducer: { data } }) => ({ data }));
 
   return (
@@ -19,8 +18,8 @@ const ReviewDetail = ({ route }) => {
         <Title>{item.title}</Title>
         <Contents>{item.comment}</Contents>
         <Extra>
-          <Date>{`${item.date} 작성`}</Date>
-          <Likes>도움이 돼요 0</Likes>
+          <Date>{`${item.date?.split("T")[0]} 작성`}</Date>
+          <Likes>{`도움이 돼요 ${likes}`}</Likes>
         </Extra>
       </ContentsBox>
     </Container>
@@ -31,7 +30,7 @@ export default ReviewDetail;
 
 const Container = styled.View`
   margin-top: 8px;
-  padding: 10px 10px 8px;
+  padding: 10px 10px 30px;
   background-color: ${({ theme }) => theme.color.White};
 `;
 

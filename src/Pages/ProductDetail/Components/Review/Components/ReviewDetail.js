@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { ScrollView } from "react-native";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import mixIn from "../../../../../Styles/Mixin";
@@ -11,18 +12,22 @@ const ReviewDetail = ({ route }) => {
   const { data } = useSelector(({ prodDataReducer: { data } }) => ({ data }));
 
   return (
-    <Container>
-      <GoodsName>{data.name}</GoodsName>
-      <ContentsBox>
-        {item.review_image ? <Img>{item.review_image}</Img> : null}
-        <Title>{item.title}</Title>
-        <Contents>{item.comment}</Contents>
-        <Extra>
-          <Date>{`${item.date?.split("T")[0]} 작성`}</Date>
-          <Likes>{`도움이 돼요 ${likes}`}</Likes>
-        </Extra>
-      </ContentsBox>
-    </Container>
+    <ScrollView>
+      <Container>
+        <GoodsName>{data.name}</GoodsName>
+        <ContentsBox>
+          {item.review_image ? (
+            <Img source={{ uri: item.review_image }}></Img>
+          ) : null}
+          <Title>{item.title}</Title>
+          <Contents>{item.comment}</Contents>
+          <Extra>
+            <Date>{`${item.date?.split("T")[0]} 작성`}</Date>
+            <Likes>{`도움이 돼요 ${likes}`}</Likes>
+          </Extra>
+        </ContentsBox>
+      </Container>
+    </ScrollView>
   );
 };
 
@@ -53,8 +58,9 @@ const Title = styled.Text`
   color: ${({ theme }) => theme.color.fontBlack};
 `;
 
-const Img = styled.Text`
+const Img = styled.Image`
   padding-top: 10px;
+  height: 100%;
 `;
 
 const Contents = styled.Text`

@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Image } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import { CommonActions, useNavigation } from "@react-navigation/native";
+import * as ImagePicker from "expo-image-picker";
 import styled from "styled-components";
 import actions from "../../../../Redux/ProductDetail/actions";
 import { Wrapper, ButtonTxt } from "../Cart";
@@ -9,7 +11,7 @@ import mixIn from "../../../../Styles/Mixin";
 export default function WriteReview() {
   const [ttl, setTtl] = useState("");
   const [txt, setTxt] = useState("");
-  const [photo, setPhoto] = useState(0);
+  const [image, setImage] = useState(null);
 
   const dispatch = useDispatch();
 
@@ -35,10 +37,38 @@ export default function WriteReview() {
         review_id: "이조은",
         title: ttl,
         comment: txt,
-        review_image: null,
+        review_image: image,
         date: date,
       })
     );
+  };
+
+  useEffect(() => {
+    (async () => {
+      if (Platform.OS !== "web") {
+        const {
+          status,
+        } = await ImagePicker.requestCameraRollPermissionsAsync();
+        if (status !== "granted") {
+          alert("Sorry, we need camera roll permissions to make this work!");
+        }
+      }
+    })();
+  }, []);
+
+  const pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    console.log(result);
+
+    if (!result.cancelled) {
+      setImage(result.uri);
+    }
   };
 
   return (
@@ -61,14 +91,21 @@ export default function WriteReview() {
         <PhotoView>
           <TitlePhoto>
             <Title photo>사진 등록</Title>
-            <Count photo>{photo} 장 / 최대 8장</Count>
+            <Count photo>{image ? 1 : 0} 장 / 최대 8장</Count>
           </TitlePhoto>
-          <AddPhoto onPress={() => console.log("worked")}>
-            <Plus
-              source={{
-                uri: "https://res.kurly.com/pc/ico/1806/img_add_thumb_x2.png",
-              }}
-            ></Plus>
+          <AddPhoto onPress={pickImage}>
+            {image ? (
+              <Image
+                source={{ uri: image }}
+                style={{ width: 64, height: 64 }}
+              />
+            ) : (
+              <Plus
+                source={{
+                  uri: "https://res.kurly.com/pc/ico/1806/img_add_thumb_x2.png",
+                }}
+              />
+            )}
           </AddPhoto>
           <PhotoNotice>
             구매한 상품이 아니거나 캡쳐 사진을 첨부할 경우, 통보없이 삭제 및

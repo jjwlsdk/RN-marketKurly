@@ -11,6 +11,6 @@ const bindMiddleware = (middleware) => {
 
 const store = createStore(rootReducer, bindMiddleware(middlewares));
 
-store.subscribe(() => console.log(store.getState()));
+// store.subscribe(() => console.log(store.getState()));
 
 export { store };

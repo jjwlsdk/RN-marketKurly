@@ -4,8 +4,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { CommonActions, useNavigation } from "@react-navigation/native";
 import * as ImagePicker from "expo-image-picker";
 import styled from "styled-components";
+import { getData } from "../../../../Api/api";
 import actions from "../../../../Redux/ProductDetail/actions";
 import { Wrapper, ButtonTxt } from "../Cart";
+import { reviewGroup } from "../../../../config";
 import mixIn from "../../../../Styles/Mixin";
 
 export default function WriteReview() {
@@ -13,14 +15,15 @@ export default function WriteReview() {
   const [txt, setTxt] = useState("");
   const [image, setImage] = useState(null);
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const navigation = useNavigation();
 
-  const { setReview } = actions;
+  // const { setReview } = actions;
 
-  const { data, review } = useSelector(
-    ({ prodDataReducer: { data, review } }) => ({
+  const { id, data, review } = useSelector(
+    ({ prodDataReducer: { id, data, review } }) => ({
+      id,
       data,
       review,
     })
@@ -28,19 +31,37 @@ export default function WriteReview() {
 
   const { date } = review;
 
-  const addReview = () => {
-    navigation.dispatch(CommonActions.goBack());
+  const addReview = async () => {
+    try {
+      const res = await fetch(`${reviewGroup}?product=${id}`, {
+        method: "post",
+        headers: {
+          Authorization: await getData(),
+        },
+        body: JSON.stringify({
+          title: ttl,
+          comment: txt,
+          review_image: image,
+          product_id: id,
+        }),
+      });
+      const resJson = await res.json();
+      console.log("WriteReview", resJson);
+      await navigation.dispatch(CommonActions.goBack());
+    } catch (e) {
+      console.log("WriteReviewError", e);
+    }
 
-    dispatch(
-      setReview({
-        ...review,
-        review_id: "이조은",
-        title: ttl,
-        comment: txt,
-        review_image: image,
-        date: date,
-      })
-    );
+    // dispatch(
+    //   setReview({
+    //     ...review,
+    //     review_id: "이조은",
+    //     title: ttl,
+    //     comment: txt,
+    //     review_image: image,
+    //     date: date,
+    //   })
+    // );
   };
 
   useEffect(() => {
@@ -63,8 +84,6 @@ export default function WriteReview() {
       aspect: [4, 3],
       quality: 1,
     });
-
-    console.log(result);
 
     if (!result.cancelled) {
       setImage(result.uri);

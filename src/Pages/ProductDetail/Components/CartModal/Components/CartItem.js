@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ScrollView } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
@@ -13,6 +13,10 @@ const CartItem = () => {
   const { setCart } = actions;
 
   const [count, setCount] = useState(0);
+  //상품 한 개 눌렀을 시 undefined 해결하기
+  useEffect(() => {
+    console.log(count);
+  }, [count]);
 
   const { data, cart } = useSelector(({ prodDataReducer: { data, cart } }) => ({
     data,
@@ -87,19 +91,19 @@ const CartItem = () => {
                       }원`}</Discounted>
                     </Box>
                   )}
-                  <CountBox handleCount={handleCount} />
+                  <CountBox id={data.id} handleCount={handleCount} />
                 </PriceBox>
               </PriceWrapper>
               <TotalWrapper>
                 <Title>합계</Title>
                 <Total>{`${
                   data.price === data.discount_price
-                    ? (count?.undefined.count * data.price).toLocaleString() ||
-                      count?.undefined.count * data.price
+                    ? (count[data.id]?.count * data.price).toLocaleString()
                     : (
-                        count?.undefined.count * data.discount_price
-                      ).toLocaleString() ||
-                      count?.undefined.count * data.discount_price
+                        count[data.id]?.count * data.discount_price
+                      ).toLocaleString()
+                  // ?  console.log("1count:", count[data.id]?.count)
+                  // : console.log("2count:", count[data.id]?.count)
                 }원`}</Total>
               </TotalWrapper>
             </>

@@ -83,7 +83,7 @@ export default function SignIn() {
     if (res.message === "INVALID_USER") {
     } else {
       storeData(res.ACCESS_TOKEN);
-      navigation.navigate("Home"); //go home
+      navigation.navigate("홈"); //go home
     }
   }
 

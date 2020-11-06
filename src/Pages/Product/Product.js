@@ -19,11 +19,11 @@ export default function Product({ route }) {
         options={{ headerShown: false }}
         component={ProductList}
       />
-      <Stack.Screen
+      {/* <Stack.Screen
         name="ProductDetail"
         options={{ headerShown: false }}
         component={ProductDetail}
-      />
+      /> */}
     </Stack.Navigator>
   );
 }

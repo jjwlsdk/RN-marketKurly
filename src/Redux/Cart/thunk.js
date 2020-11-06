@@ -1,16 +1,16 @@
 import actions from "./actions";
-import { deleteItem, put } from "./../../Api/api";
+import { deleteItem, put, get } from "./../../Api/api";
 const { getData, checkedData, removeData, updateCountData } = actions;
 
 export const getCartData = () => async (dispatch) => {
-  // const {cart} = await get("user/cart");
-  const data = DATA;
+  const res = await get("user/cart");
+  console.log(res);
 
-  const result = data.map((item) => {
+  const result = res.cart.map((item) => {
     return { ...item, checked: true };
   });
 
-  dispatch(getData(result));
+  return dispatch(getData(result));
 };
 
 export const allCheckedData = (checked) => (dispatch, getState) => {
@@ -41,35 +41,39 @@ export const chekcedDataById = (id) => (dispatch, getState) => {
   return dispatch(checkedData(result));
 };
 
-export const removeDataById = (id) => (dispatch, getState) => {
+export const removeDataById = (id) => async (dispatch, getState) => {
   const {
     cartReducer: { data },
   } = getState();
 
-  deleteItem("user/cart", { cart_id: id });
+  const response = await deleteItem("user/cart", { cart_id: id });
+  console.log(response);
   const result = data.filter((item) => item.cart_id !== id);
 
   return dispatch(removeData(result));
 };
 
-export const changeCount = (id, count, type) => (dispatch, getState) => {
+export const changeCount = (id, count, type) => async (dispatch, getState) => {
   const {
     cartReducer: { data },
   } = getState();
 
-  put("user/cart", { cart_id: id, product_count: count });
+  if (type === "plus") {
+    count++;
+  }
+
+  if (type === "minus") {
+    count--;
+  }
+
+  const response = await put("user/cart", {
+    cart_id: id,
+    product_count: count,
+  });
 
   const result = data.map((item) => {
     if (item.cart_id === id) {
-      if (type === "plus") {
-        item.count++;
-      }
-
-      if (type === "minus") {
-        item.count--;
-      }
-
-      return { ...item, count: item.count };
+      return { ...item, count: count };
     }
     return item;
   });

@@ -14,7 +14,7 @@ export default function ReviewGroup({ navigation }) {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [reviewList]);
 
   const fetchData = async () => {
     try {
@@ -62,7 +62,7 @@ export default function ReviewGroup({ navigation }) {
           </ReviewBox>
         );
       })}
-      {title ? (
+      {/* {title ? (
         <ReviewBox>
           <Subject
             onPress={() =>
@@ -76,7 +76,7 @@ export default function ReviewGroup({ navigation }) {
             <Date>{date}</Date>
           </Info>
         </ReviewBox>
-      ) : null}
+      ) : null} */}
     </Container>
   );
 }

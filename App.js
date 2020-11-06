@@ -8,6 +8,7 @@ import Main from "./src/Pages/Main/Main";
 import SignIn from "./src/Pages/SignIn/SignIn";
 import SignUp from "./src/Pages/SignUp/SignUp";
 import SlideProd from "./src/Pages/SlideProd/SlideProd";
+import ProductList from "./src/Pages/Product/Components/ProductList";
 import ProductDetail from "./src/Pages/ProductDetail/ProductDetail";
 import Header from "./src/Pages/ProductDetail/Components/Header/Header";
 import Close from "./src/Pages/ProductDetail/Components/Header/Components/Close";
@@ -52,6 +53,11 @@ export default function App() {
               name="SlideProduct"
               options={{ headerShown: false }}
               component={SlideProd}
+            />
+            <Stack.Screen
+              name="ProductList"
+              options={{ headerShown: false }}
+              component={ProductList}
             />
             <Stack.Screen
               name="ProductDetail"

@@ -30,7 +30,7 @@ export default function ProductImage() {
           }}
           style={{
             width: dimensions.screen.width,
-            height: 2000,
+            height: dimensions.screen.height,
           }}
         />
       </ScrollView>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useSelector } from "react-redux";
+import { getData } from "../../../../../Api/api";
 import { Container, Wrapper, ButtonTxt } from "../../Cart";
 import { addCart } from "../../../../../config";
 
@@ -19,23 +19,11 @@ export default function AddCart({ removeModal }) {
     removeModal(modal);
   }, [modal]);
 
-  const getToken = async () => {
-    try {
-      const value = await AsyncStorage.getItem("ACCESS_TOKEN");
-      if (value !== null) {
-        return value;
-      }
-    } catch (e) {
-      console.log("ACCESS_TOKEN를 가져오지 못했습니다.");
-    }
-  };
-
-  const handleCart = () => {
-    fetch(`${addCart}`, {
+  const handleCart = async () => {
+    const res = await fetch(`${addCart}`, {
       method: "post",
       headers: {
-        Authorization:
-          "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Mn0.HWaXn9BKeUCMDZuYKDjDggGP-lV8hHTrlwWtAVjdq2I",
+        Authorization: await getData(),
       },
       body: JSON.stringify({
         product_id: data.id,
@@ -48,14 +36,13 @@ export default function AddCart({ removeModal }) {
           ? Object.values(cart).map((item) => {
               return item.count;
             })
-          : cart.undefined.count,
+          : cart[data.id].count,
       }),
-    })
-      .then((res) => res.json())
-      .then(() => {
-        setModal(false);
-        navigation.navigate("CartScreen");
-      });
+    });
+    const resJson = await res.json();
+    console.log("AddCart:", resJson);
+    await setModal(false);
+    await navigation.navigate("CartScreen");
   };
 
   return (

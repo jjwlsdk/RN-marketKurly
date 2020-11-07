@@ -4,7 +4,6 @@ const API = "http://localhost:8000/";
 
 export const getData = async () => {
   try {
-    console.log("getdata");
     const value = await AsyncStorage.getItem("ACCESS_TOKEN");
     if (value !== null) {
       return value;

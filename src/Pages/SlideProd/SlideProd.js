@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FlatList } from "react-native";
-import styled from "styled-components";
 import { productList } from "../../config";
+import styled from "styled-components";
 import mixIn from "../../Styles/Mixin";
 
 const LIMIT = 10;

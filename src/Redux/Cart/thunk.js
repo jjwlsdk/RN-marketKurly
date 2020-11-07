@@ -4,7 +4,6 @@ const { getData, checkedData, removeData, updateCountData } = actions;
 
 export const getCartData = () => async (dispatch) => {
   const res = await get("user/cart");
-  console.log(res);
 
   const result = res.cart.map((item) => {
     return { ...item, checked: true };
@@ -30,7 +29,6 @@ export const chekcedDataById = (id) => (dispatch, getState) => {
     cartReducer: { data },
   } = getState();
 
-  console.log("체크 클릭");
   const result = data.map((item) => {
     if (item.cart_id === id) {
       return { ...item, checked: !item.checked };
@@ -47,7 +45,6 @@ export const removeDataById = (id) => async (dispatch, getState) => {
   } = getState();
 
   const response = await deleteItem("user/cart", { cart_id: id });
-  console.log(response);
   const result = data.filter((item) => item.cart_id !== id);
 
   return dispatch(removeData(result));

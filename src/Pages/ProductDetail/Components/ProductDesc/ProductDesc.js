@@ -1,12 +1,12 @@
 import React from "react";
 import { ScrollView } from "react-native";
-import styled from "styled-components";
 import MainImage from "./Components/MainImage";
 import GoodsName from "./Components/GoodsName";
 import GoodsPrice from "./Components/GoodsPrice";
 import GoodsInfo from "./Components/GoodsInfo";
 import Info from "./Components/Info";
 import DetailInfo from "./Components/DetailInfo";
+import styled from "styled-components";
 
 export default function ProductDesc() {
   return (

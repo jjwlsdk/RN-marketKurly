@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import styled from "styled-components";
 import { reviewGroup } from "../../../../config";
+import styled from "styled-components";
 
 export default function ReviewGroup({ navigation }) {
   const [reviewList, setReviewList] = useState([]);

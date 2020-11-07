@@ -33,7 +33,6 @@ export default function ProductList({ sort_by_category, navigation }) {
   };
   useEffect(() => {
     fetchData();
-    console.log(data);
   }, [filter, delivery]);
   const renderItem = ({ item }) => {
     return (

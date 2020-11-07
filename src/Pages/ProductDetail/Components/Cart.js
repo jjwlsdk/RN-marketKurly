@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import CartModal from "./CartModal/CartModal";
+import styled from "styled-components";
 
 const Cart = () => {
   const [isModal, setIsModal] = useState(false);

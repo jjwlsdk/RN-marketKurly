@@ -39,8 +39,6 @@ export default function AddCart({ removeModal }) {
           : cart[data.id].count,
       }),
     });
-    const resJson = await res.json();
-    console.log("AddCart:", resJson);
     await setModal(false);
     await navigation.navigate("CartScreen");
   };

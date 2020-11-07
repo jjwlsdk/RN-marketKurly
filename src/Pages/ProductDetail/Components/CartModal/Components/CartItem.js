@@ -103,7 +103,6 @@ const CartItem = () => {
                         count[data.id]?.count * data.discount_price
                       ).toLocaleString()
                   // ?  console.log("1count:", count[data.id]?.count)
-                  // : console.log("2count:", count[data.id]?.count)
                 }원`}</Total>
               </TotalWrapper>
             </>

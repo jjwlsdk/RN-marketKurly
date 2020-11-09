@@ -14,8 +14,8 @@ export default function GoodsPrice() {
           <Price>
             <Number>{`${
               data.price === data.discount_price
-                ? data.price?.toLocaleString() || data.price
-                : data.discount_price?.toLocaleString() || data.discount_price
+                ? data.price?.toLocaleString()
+                : data.discount_price?.toLocaleString()
             }`}</Number>
             <Won>원</Won>
           </Price>
@@ -28,9 +28,7 @@ export default function GoodsPrice() {
         </PriceBox>
         {data.price === data.discount_price ? null : (
           <OriginBox>
-            <OriginPrice>{`${
-              data.price?.toLocaleString() || data.price
-            }`}</OriginPrice>
+            <OriginPrice>{`${data.price?.toLocaleString()}`}</OriginPrice>
             <OriginWon>원</OriginWon>
           </OriginBox>
         )}

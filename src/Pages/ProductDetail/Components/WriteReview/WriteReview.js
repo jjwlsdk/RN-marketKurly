@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Image } from "react-native";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { CommonActions, useNavigation } from "@react-navigation/native";
 import * as ImagePicker from "expo-image-picker";
 import styled from "styled-components";
 import { getData } from "../../../../Api/api";
-import actions from "../../../../Redux/ProductDetail/actions";
 import { Wrapper, ButtonTxt } from "../Cart";
 import { reviewGroup } from "../../../../config";
 import mixIn from "../../../../Styles/Mixin";
@@ -15,11 +14,7 @@ export default function WriteReview() {
   const [txt, setTxt] = useState("");
   const [image, setImage] = useState(null);
 
-  // const dispatch = useDispatch();
-
   const navigation = useNavigation();
-
-  // const { setReview } = actions;
 
   const { id, data, review } = useSelector(
     ({ prodDataReducer: { id, data, review } }) => ({
@@ -51,17 +46,6 @@ export default function WriteReview() {
     } catch (e) {
       console.log("WriteReviewError", e);
     }
-
-    // dispatch(
-    //   setReview({
-    //     ...review,
-    //     review_id: "이조은",
-    //     title: ttl,
-    //     comment: txt,
-    //     review_image: image,
-    //     date: date,
-    //   })
-    // );
   };
 
   useEffect(() => {

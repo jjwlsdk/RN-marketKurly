@@ -13,10 +13,6 @@ const CartItem = () => {
   const { setCart } = actions;
 
   const [count, setCount] = useState(0);
-  //상품 한 개 눌렀을 시 undefined 해결하기
-  useEffect(() => {
-    console.log(count);
-  }, [count]);
 
   const { data, cart } = useSelector(({ prodDataReducer: { data, cart } }) => ({
     data,
@@ -40,9 +36,7 @@ const CartItem = () => {
                   <PriceWrapper>
                     <PriceBox>
                       <Box>
-                        <Discounted>{`${
-                          item.price.toLocaleString() || item.price
-                        }원`}</Discounted>
+                        <Discounted>{`${item.price.toLocaleString()}원`}</Discounted>
                       </Box>
                       <CountBox
                         id={item.product_series_id}
@@ -55,19 +49,12 @@ const CartItem = () => {
               ))}
               <TotalWrapper>
                 <Title>합계</Title>
-                <Total>{`${
-                  Object.values(count)
-                    .map((item) => item.price)
-                    .reduce((a, b) => {
-                      return a + b;
-                    }, 0)
-                    .toLocaleString() ||
-                  Object.values(count)
-                    .map((item) => item.price)
-                    .reduce((a, b) => {
-                      return a + b;
-                    }, 0)
-                }원`}</Total>
+                <Total>{`${Object.values(count)
+                  .map((item) => item.price)
+                  .reduce((a, b) => {
+                    return a + b;
+                  }, 0)
+                  .toLocaleString()}원`}</Total>
               </TotalWrapper>
             </>
           ) : (
@@ -77,18 +64,12 @@ const CartItem = () => {
                 <PriceBox>
                   {data.price === data.discount_price ? (
                     <Box>
-                      <Discounted>{`${
-                        data.price?.toLocaleString() || data.price
-                      }원`}</Discounted>
+                      <Discounted>{`${data.price?.toLocaleString()}원`}</Discounted>
                     </Box>
                   ) : (
                     <Box>
-                      <Original>{`${
-                        data.price?.toLocaleString() || data.price
-                      }원`}</Original>
-                      <Discounted>{`${
-                        data.discount_price?.toLocaleString() || data.price
-                      }원`}</Discounted>
+                      <Original>{`${data.price?.toLocaleString()}원`}</Original>
+                      <Discounted>{`${data.discount_price?.toLocaleString()}원`}</Discounted>
                     </Box>
                   )}
                   <CountBox id={data.id} handleCount={handleCount} />
@@ -102,7 +83,6 @@ const CartItem = () => {
                     : (
                         count[data.id]?.count * data.discount_price
                       ).toLocaleString()
-                  // ?  console.log("1count:", count[data.id]?.count)
                 }원`}</Total>
               </TotalWrapper>
             </>

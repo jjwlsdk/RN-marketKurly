@@ -2,7 +2,6 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import styled from "styled-components";
 import ProductList from "./Components/ProductList";
-import ProductDetail from "../ProductDetail/ProductDetail";
 
 const Stack = createStackNavigator();
 
@@ -19,11 +18,6 @@ export default function Product({ route }) {
         options={{ headerShown: false }}
         component={ProductList}
       />
-      {/* <Stack.Screen
-        name="ProductDetail"
-        options={{ headerShown: false }}
-        component={ProductDetail}
-      /> */}
     </Stack.Navigator>
   );
 }

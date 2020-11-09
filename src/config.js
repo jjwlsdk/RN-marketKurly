@@ -1,4 +1,4 @@
-const API = "http://localhost:8000";
+const API = "http://3.15.212.162:8000";
 export const productList = `${API}/products/`;
 export const productDetail = `${API}/products/`;
 export const reviewGroup = `${API}/review`;

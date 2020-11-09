@@ -1,10 +1,11 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const API = "http://localhost:8000/";
+const API = "http://3.15.212.162:8000/";
 
 export const getData = async () => {
   try {
     const value = await AsyncStorage.getItem("ACCESS_TOKEN");
+
     if (value !== null) {
       return value;
     }
@@ -23,8 +24,8 @@ export const get = async (path, data) => {
         Authorization: token,
       },
     });
-    const result = await res.json();
 
+    const result = await res.json();
     return result;
   } catch (e) {
     console.log("페치에 실패");
@@ -55,8 +56,8 @@ export const deleteItem = async (path, data) => {
       },
       body: JSON.stringify(data),
     });
-    const result = await res.json();
 
+    const result = await res.json();
     return result;
   } catch (e) {
     console.log(e.message);
@@ -73,8 +74,8 @@ export const put = async (path, data) => {
       },
       body: JSON.stringify(data),
     });
-    const result = await res.json();
 
+    const result = await res.json();
     return result;
   } catch (e) {
     console.log(e.message);

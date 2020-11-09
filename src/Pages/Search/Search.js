@@ -27,8 +27,6 @@ export default function Search({ navigation }) {
     }
   };
 
-  useEffect(() => {}, []);
-
   const renderItem = ({ item }) => {
     return (
       <ResultList

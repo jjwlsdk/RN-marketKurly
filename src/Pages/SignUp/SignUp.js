@@ -56,7 +56,7 @@ export default function SignUp() {
         onChangeGuide("id", "isDuplicate", true)
       );
 
-      if (res === "ACCOUNT_OVERLAPED") {
+      if (res.message === "ACCOUNT_OVERLAPED") {
         CreateAlert("동일한 아이디가 이미 등록되어 있습니다", () =>
           onChangeGuide("id", "isDuplicate", false)
         );

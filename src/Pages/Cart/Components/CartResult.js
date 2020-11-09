@@ -45,7 +45,7 @@ export default function CartResult({ data, onChangeTotal }) {
       <Wrapper>
         <Text>상품할인금액</Text>
         <Text>
-          {discount === 0 ? `0 원` : `- ${discount?.toLocaleString()} 원`}
+          {discount === 0 ? `0 원` : `${discount?.toLocaleString()} 원`}
         </Text>
       </Wrapper>
       <Wrapper>

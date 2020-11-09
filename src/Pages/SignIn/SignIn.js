@@ -42,7 +42,7 @@ export default function SignIn() {
   };
 
   async function SocialSubmit(result) {
-    const res = await fetch("http://localhost:8000/user/googlesignin", {
+    const res = await fetch("http://3.15.212.162:8000/user/googlesignin", {
       method: "GET",
       headers: {
         Authorization: result,
@@ -51,7 +51,7 @@ export default function SignIn() {
     const resJson = await res.json();
     if (resJson.ACCESS_TOKEN) {
       storeData(resJson.ACCESS_TOKEN);
-      navigation.navigate("Home"); //go home
+      navigation.navigate("Home");
     }
   }
 
@@ -79,11 +79,10 @@ export default function SignIn() {
       account: id,
       password: pw,
     });
-
     if (res.message === "INVALID_USER") {
     } else {
       storeData(res.ACCESS_TOKEN);
-      navigation.navigate("홈"); //go home
+      navigation.navigate("Home");
     }
   }
 

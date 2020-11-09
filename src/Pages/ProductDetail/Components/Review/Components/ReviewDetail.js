@@ -17,7 +17,7 @@ const ReviewDetail = ({ route }) => {
         <GoodsName>{data.name}</GoodsName>
         <ContentsBox>
           {item.review_image ? (
-            <Img source={{ uri: item.review_image }}></Img>
+            <Img source={{ uri: item.review_image }} />
           ) : null}
           <Title>{item.title}</Title>
           <Contents>{item.comment}</Contents>
@@ -60,7 +60,7 @@ const Title = styled.Text`
 
 const Img = styled.Image`
   padding-top: 10px;
-  height: 100%;
+  height: 400px;
 `;
 
 const Contents = styled.Text`

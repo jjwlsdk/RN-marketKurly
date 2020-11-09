@@ -27,11 +27,12 @@ export default function AddCart({ removeModal }) {
       },
       body: JSON.stringify({
         product_id: data.id,
-        product_series_id: data.product_series
-          ? Object.keys(cart).map((item) => {
-              return Number(item);
-            })
-          : [],
+        product_series_id:
+          data.product_series.length > 0
+            ? Object.keys(cart).map((item) => {
+                return Number(item);
+              })
+            : [],
         product_count: data.product_series
           ? Object.values(cart).map((item) => {
               return item.count;

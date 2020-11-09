@@ -8,12 +8,14 @@ import mixIn from "../../../Styles/Mixin";
 
 export default function ProductList({ sort_by_category, navigation }) {
   const [data, setData] = useState([]);
+
   const { filter, delivery } = useSelector(
     ({ productReducer: { filter, delivery } }) => ({
       filter,
       delivery,
     })
   );
+
   const fetchData = async () => {
     try {
       const res = await fetch(`${productList}`, {
@@ -31,9 +33,11 @@ export default function ProductList({ sort_by_category, navigation }) {
       console.log("페치에 실패했습니다.");
     }
   };
+
   useEffect(() => {
     fetchData();
   }, [filter, delivery]);
+
   const renderItem = ({ item }) => {
     return (
       <ProductContainer
@@ -75,6 +79,7 @@ export default function ProductList({ sort_by_category, navigation }) {
       </ProductContainer>
     );
   };
+
   return (
     <Container>
       <Filter />
@@ -84,17 +89,19 @@ export default function ProductList({ sort_by_category, navigation }) {
           renderItem={renderItem}
           keyExtractor={(item, idx) => idx.toString()}
           numColumns={2}
+          showsVerticalScrollIndicator="No"
         />
       </Test>
     </Container>
   );
 }
+
 const Container = styled.View`
   padding: 0 10px;
   margin-top: 5px;
 `;
 const ProductContainer = styled.TouchableOpacity`
-  padding: 0 5px 20px 0;
+  padding: 0 10px 20px 0;
 `;
 const ProductWrap = styled.View`
   width: 172px;

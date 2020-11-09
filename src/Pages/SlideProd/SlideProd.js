@@ -91,6 +91,7 @@ export default function SlideProd({ sort_by_sub_category, navigation }) {
         onEndReached={onEndReached}
         onEndReachedThreshold={0.6}
         horizontal
+        showsHorizontalScrollIndicator="No"
       />
     </Container>
   );

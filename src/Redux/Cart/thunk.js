@@ -4,7 +4,6 @@ const { getData, checkedData, removeData, updateCountData } = actions;
 
 export const getCartData = () => async (dispatch) => {
   const res = await get("user/cart");
-
   const result = res.cart.map((item) => {
     return { ...item, checked: true };
   });
